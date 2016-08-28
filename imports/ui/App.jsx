@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
-import { Tasks } from '../api/tasks.js';
+import { Jewels } from '../api/jewels.js';
 
-import Task from './Task.jsx';
+import Jewel from './Jewel.jsx';
+import Map from './Map';
+
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 // App component - represents the whole app
@@ -15,7 +17,13 @@ class App extends Component {
 
         this.state = {
             hideCompleted: false,
+            mapCenter: this.props.initialMapCenter
         };
+
+        navigator.geolocation.getCurrentPosition((pos) => {
+            console.log(pos)
+            this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude] })
+        })
     }
 
     handleSubmit(event) {
@@ -24,7 +32,7 @@ class App extends Component {
         // Find the text field via the React ref
         const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
 
-        Meteor.call('tasks.insert', text);
+        Meteor.call('jewels.insert', text);
 
         // Clear form
         ReactDOM.findDOMNode(this.refs.textInput).value = '';
@@ -36,19 +44,19 @@ class App extends Component {
         });
     }
 
-    renderTasks() {
-        let filteredTasks = this.props.tasks;
+    renderJewels() {
+        let filteredJewels = this.props.jewels;
         if (this.state.hideCompleted) {
-            filteredTasks = filteredTasks.filter(task => !task.checked);
+            filteredJewels = filteredJewels.filter(jewel => !jewel.checked);
         }
-        return filteredTasks.map((task) => {
+        return filteredJewels.map((jewel) => {
             const currentUserId = this.props.currentUser && this.props.currentUser._id;
-            const showPrivateButton = task.owner === currentUserId;
+            const showPrivateButton = jewel.owner === currentUserId;
 
             return (
-                <Task
-                    key={task._id}
-                    task={task}
+                <Jewel
+                    key={jewel._id}
+                    jewel={jewel}
                     showPrivateButton={showPrivateButton}
                 />
             );
@@ -57,52 +65,30 @@ class App extends Component {
 
     render() {
         return (
-            <div className="container">
-                <header>
-                    <h1>Todo List ({this.props.incompleteCount})</h1>
-                    <label className="hide-completed">
-                        <input
-                            type="checkbox"
-                            readOnly
-                            checked={this.state.hideCompleted}
-                            onClick={this.toggleHideCompleted.bind(this)}
-                        />
-                        Hide Completed Tasks
-                    </label>
-
-                    <AccountsUIWrapper />
-
-                    { this.props.currentUser ?
-                        <form className="new-task" onSubmit={this.handleSubmit.bind(this)}>
-                            <input
-                                type="text"
-                                ref="textInput"
-                                placeholder="Type to add new tasks"
-                            />
-                        </form> : ''
-                    }
-                </header>
-
-                <ul>
-                    {this.renderTasks()}
-                </ul>
+            <div className="">
+                <Map
+                    style="mapbox://styles/mapbox/streets-v9"
+                    center={this.state.mapCenter}
+                    accessToken="pk.eyJ1IjoiYWxleGQiLCJhIjoiY2lycmd5anZpMGk1cGZrbTYzMHU3OGJ5YiJ9.5cKvcoZRsDYxzFsCjJLG4Q" />
             </div>
         );
     }
 }
 
 App.propTypes = {
-    tasks: PropTypes.array.isRequired,
+    jewels: PropTypes.array.isRequired,
     incompleteCount: PropTypes.number.isRequired,
     currentUser: PropTypes.object,
+    initialMapCenter: PropTypes.array.isRequired,
 };
 
 export default createContainer(() => {
-    Meteor.subscribe('tasks');
+    Meteor.subscribe('jewels');
 
     return {
-        tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-        incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
+        jewels: Jewels.find({}, { sort: { createdAt: -1 } }).fetch(),
+        incompleteCount: Jewels.find({ checked: { $ne: true } }).count(),
         currentUser: Meteor.user(),
+        initialMapCenter: [151.2093, -33.8688]
     };
 }, App);
