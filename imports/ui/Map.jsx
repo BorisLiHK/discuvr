@@ -205,8 +205,8 @@ Map.propTypes = {
     style: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
-    ]).isRequired,
-    accessToken: PropTypes.string.isRequired,
+    ]),
+    accessToken: PropTypes.string,
     center: PropTypes.arrayOf(PropTypes.number),
     zoom: PropTypes.arrayOf(PropTypes.number),
     minZoom: PropTypes.number,
@@ -248,5 +248,7 @@ Map.defaultProps = {
     bearing: 0,
     scrollZoom: true,
     movingMethod: "flyTo",
-    pitch: 60
+    pitch: 60,
+    style: 'mapbox://styles/mapbox/light-v9',
+    accessToken: 'pk.eyJ1IjoiYWxleGQiLCJhIjoiY2lycmd5anZpMGk1cGZrbTYzMHU3OGJ5YiJ9.5cKvcoZRsDYxzFsCjJLG4Q'
 };
