@@ -23,8 +23,6 @@ export default class Map extends Component {
         map: this.state.map
     };
 
-    // MapboxGl.accessToken = 'pk.eyJ1IjoiYWxleGQiLCJhIjoiY2lycmd5anZpMGk1cGZrbTYzMHU3OGJ5YiJ9.5cKvcoZRsDYxzFsCjJLG4Q'
-
     componentWillMount() {
 
     }
