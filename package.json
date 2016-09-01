@@ -5,7 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "bcrypt": "^0.8.7",
+    "bcrypt-nodejs": "0.0.3",
     "classnames": "^2.2.5",
     "deep-equal": "^1.0.1",
     "mapbox-gl": "^0.23.0",
