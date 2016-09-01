@@ -12,7 +12,7 @@ node --version
 git --version
 ```
 If installed, you will see an output of the version of each software. Otherwise you will get an error.
-  
+    
 ### Install required software ###
 
 * [Node.js v6.4.0](https://nodejs.org/en/)
