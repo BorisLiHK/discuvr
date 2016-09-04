@@ -250,5 +250,27 @@ Map.defaultProps = {
     movingMethod: "flyTo",
     pitch: 60,
     style: 'mapbox://styles/mapbox/light-v9',
-    accessToken: 'pk.eyJ1IjoiYWxleGQiLCJhIjoiY2lycmd5anZpMGk1cGZrbTYzMHU3OGJ5YiJ9.5cKvcoZRsDYxzFsCjJLG4Q'
+    accessToken: 'pk.eyJ1IjoiYWxleGQiLCJhIjoiY2lycmd5anZpMGk1cGZrbTYzMHU3OGJ5YiJ9.5cKvcoZRsDYxzFsCjJLG4Q',
+    onStyleLoad: function (map) {
+        map.addSource('points', {
+            type: 'geojson',
+            data: {
+                "type": "FeatureCollection",
+                "features": [{
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            151.1470661,
+                            -33.9092054
+                        ]
+                    },
+                    "properties": {
+                        "title": "Mapbox DC",
+                        "icon": "monument"
+                    }
+                }]
+            }
+        });
+    }
 };

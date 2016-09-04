@@ -19,6 +19,7 @@ ecmascript@0.5.8              # Enable ECMAScript2015+ syntax in app code
 
 react-meteor-data
 shell-server
-accounts-ui
 accounts-password
 practicalmeteor:mocha
+accounts-ui
+mdg:geolocation

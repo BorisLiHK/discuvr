@@ -1,11 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
-
-import { Jewels } from '../api/jewels.js';
-
-import Map from './MapContainer';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // App component - represents the whole app
 export default class App extends Component {
@@ -15,7 +10,9 @@ export default class App extends Component {
 
     render() {
         return (
-            <div>{this.props.children}</div>
+            <MuiThemeProvider>
+                {this.props.children}
+            </MuiThemeProvider>
         )
     }
 }

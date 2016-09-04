@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import Map from './Map';
+import AccountsUIWrapper from './AccountsUIWrapper'
 
 export default class MapContainer extends Component {
     constructor(props) {
@@ -23,10 +24,11 @@ export default class MapContainer extends Component {
 
     render() {
         return (
-            <Map
-                style=""
-                center={this.state.mapCenter}
-                accessToken="" />
+            <div className="super_class">
+                <Map
+                    center={this.state.mapCenter} />
+                <AccountsUIWrapper />
+            </div>
         );
     }
 }
