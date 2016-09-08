@@ -1,4 +1,4 @@
-import MapboxGl from "mapbox-gl/dist/mapbox-gl";
+import mapboxgl from "mapbox-gl/dist/mapbox-gl";
 import React, { Component, PropTypes, cloneElement, Children } from "react";
 import isEqual from "deep-equal";
 
@@ -9,8 +9,9 @@ let index = 0;
 const generateID = () => index++;
 
 export default class Layer extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+
 
     }
 
@@ -108,19 +109,17 @@ export default class Layer extends Component {
 
         this.id = this.props.id || `layer-${generateID()}`;
 
-        this.source = MapboxGl.GeoJSONSource({
-            ...this.props.sourceOptions,
-            data: {
-                type: "FeatureCollection",
-                features: []
-            }
-        });
+        // console.log(this.props.sourceOptions)
+        //
+        // this.source = new mapboxgl.GeoJSONSource({
+        //     ...this.props.sourceOptions,
+        //     data: {
+        //         type: "FeatureCollection",
+        //         features: []
+        //     }
+        // });
 
-        this.contextTypes = {
-            map: PropTypes.object
-        };
-
-        const { id, source } = this;
+        const { id } = this;
         const { type, layout, paint, layerOptions, sourceId, before } = this.props;
         const { map } = this.context;
 
@@ -133,9 +132,9 @@ export default class Layer extends Component {
             ...layerOptions
         };
 
-        if(!sourceId) {
-            map.addSource(id, source);
-        }
+        // if(!sourceId) {
+        //     map.addSource(id, source);
+        // }
 
         map.addLayer(layer, before);
 
@@ -198,6 +197,10 @@ export default class Layer extends Component {
         return null;
     }
 }
+
+Layer.contextTypes = {
+    map: PropTypes.object
+};
 
 Layer.propTypes = {
     id: PropTypes.string,

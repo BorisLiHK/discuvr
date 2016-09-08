@@ -8,10 +8,6 @@ export default class Map extends Component {
 
         this.state = {};
 
-        this.childContextTypes = {
-            map: React.PropTypes.object
-        };
-
         this.containerStyle = {
             height: '100%',
             width: '100%',
@@ -20,7 +16,7 @@ export default class Map extends Component {
     }
 
     getChildContext() {
-        map: this.state.map
+        return {map: this.state.map}
     };
 
     componentWillMount() {
@@ -201,6 +197,10 @@ export default class Map extends Component {
     }
 }
 
+Map.childContextTypes = {
+    map: React.PropTypes.object
+};
+
 Map.propTypes = {
     style: PropTypes.oneOfType([
         PropTypes.string,
@@ -251,26 +251,26 @@ Map.defaultProps = {
     pitch: 60,
     style: 'mapbox://styles/mapbox/light-v9',
     accessToken: 'pk.eyJ1IjoiYWxleGQiLCJhIjoiY2lycmd5anZpMGk1cGZrbTYzMHU3OGJ5YiJ9.5cKvcoZRsDYxzFsCjJLG4Q',
-    onStyleLoad: function (map) {
-        map.addSource('points', {
-            type: 'geojson',
-            data: {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                            151.1470661,
-                            -33.9092054
-                        ]
-                    },
-                    "properties": {
-                        "title": "Mapbox DC",
-                        "icon": "monument"
-                    }
-                }]
-            }
-        });
-    }
+    // onStyleLoad: function (map) {
+    //     map.addSource('points', {
+    //         type: 'geojson',
+    //         data: {
+    //             "type": "FeatureCollection",
+    //             "features": [{
+    //                 "type": "Feature",
+    //                 "geometry": {
+    //                     "type": "Point",
+    //                     "coordinates": [
+    //                         151.1470661,
+    //                         -33.9092054
+    //                     ]
+    //                 },
+    //                 "properties": {
+    //                     "title": "Mapbox DC",
+    //                     "icon": "monument"
+    //                 }
+    //             }]
+    //         }
+    //     });
+    // }
 };
