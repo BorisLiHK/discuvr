@@ -6,6 +6,7 @@ import {Router, IndexRoute, Route, browserHistory} from 'react-router';
 import App from '../../ui/App'
 import MapContainer from '../../ui/MapContainer'
 import LoginPage from '../../ui/LoginPage'
+import CreateJewelPage from '../../ui/CreateJewelPage'
 
 function redirectToMap(nextState, replace) {
     if (Meteor.userId()) {
@@ -31,6 +32,7 @@ export const renderRoutes = () => (
             <IndexRoute component={MapContainer} onEnter={redirectToLogin} />
             {/*<Route path="history" component={History} onEnter={redirectToLogin} />*/}
             <Route path="login" component={LoginPage}  onEnter={redirectToMap} />
+            <Route path="create-jewel" component={CreateJewelPage} />
         </Route>
     </Router>
 );

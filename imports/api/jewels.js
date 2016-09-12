@@ -18,8 +18,9 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'jewels.insert'(text) {
+    'jewels.insert'(text, date) {
         check(text, String);
+        check(date, String)
 
         // Make sure the user is logged in before inserting a jewel
         if (! this.userId) {
@@ -28,6 +29,7 @@ Meteor.methods({
 
         Jewels.insert({
             text,
+            date: new Date(date),
             createdAt: new Date(),
             owner: this.userId,
             username: Meteor.users.findOne(this.userId).username,

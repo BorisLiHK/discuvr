@@ -23,3 +23,6 @@ accounts-password
 practicalmeteor:mocha
 accounts-ui
 mdg:geolocation
+
+aldeed:collection2
+aldeed:autoform
