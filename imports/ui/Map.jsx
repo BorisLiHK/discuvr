@@ -66,10 +66,47 @@ export default class Map extends Component {
             scrollZoom
         });
 
+
         map.on("style.load", (...args) => {
             if (onStyleLoad) {
                 onStyleLoad(map, ...args);
             }
+            // console.log(`we're here`)
+            //
+            // map.addSource('awesome', {
+            //     type: 'geojson',
+            //     data: {}
+            // });
+            //
+            // map.addLayer({
+            //     'id': 'collection',
+            //     'type': 'symbol',
+            //     'source': 'awesome',
+            //     'layout': {
+            //         'icon-image': '{icon}-15',
+            //         'text-field': '{title}',
+            //         'text-offset': [0, 0.6],
+            //         'text-anchor': 'top'
+            //     }
+            // })
+            //
+            // map.getSource('awesome').setData({
+            //     "type": "FeatureCollection",
+            //     "features": [{
+            //         "type": "Feature",
+            //         "properties": {
+            //             "title": "Mapbox UTS",
+            //             "icon": "harbor"
+            //         },
+            //         "geometry": {
+            //             "type": "Point",
+            //             "coordinates": [
+            //                 151.1994834,
+            //                 -33.8840109
+            //             ]
+            //         }
+            //     }]
+            // })
 
             this.setState({ map });
         });
