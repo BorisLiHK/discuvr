@@ -26,7 +26,7 @@ Jewels.attachSchema({
     	srf: {
     		type: DatePicker
     	}
-    }
+    },
 });
 
 export default Jewels;
