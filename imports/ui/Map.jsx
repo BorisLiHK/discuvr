@@ -51,21 +51,19 @@ export default class Map extends Component {
 
         MapboxGl.accessToken = accessToken;
 
-        //current maxbound coordinate are hardcoded, change later
-        //var bounds = [
-        //    [250, -130], // Southwest coordinates
-        //    [250, -130]  // Northeast coordinates
-        //    ];
-
+        var bounds = [
+            [151.1000, -33.9000], 
+            [151.3000, -33.8000]
+        ];
+        
         const map = new MapboxGl.Map({
             preserveDrawingBuffer,
             hash,
             zoom: zoom[0],
             minZoom,
-            //maxZoom,
-            maxZoom: zoom[5],
-            maxBounds,
-            //maxBounds: bounds,
+            maxZoom,
+            //maxBounds,
+            maxBounds: bounds,
             bearing,
             container: this.refs.mapboxContainer,
             center,
