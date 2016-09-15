@@ -10,6 +10,15 @@ import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 
 const Jewels = new Mongo.Collection('jewels');
 
+CoordinateSchema = new SimpleSchema({
+    longitude: {
+        type: Number
+    },
+    lattitude: {
+        type: Number
+    }
+});
+
 SimpleSchema.extendOptions({
   srf: Match.Optional(Object)
 });
@@ -26,6 +35,9 @@ Jewels.attachSchema({
     	srf: {
     		type: DatePicker
     	}
+    },
+    coordinates: {
+        type: CoordinateSchema
     }
 });
 
