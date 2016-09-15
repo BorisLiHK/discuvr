@@ -28,6 +28,8 @@ export default class AccountsUIWrapper extends Component {
 
     render() {
         // Just render a placeholder container that will be filled in
-        return <span style={this.style} ref="container" />;
+        return (
+            <span style={this.style} ref="container" />
+            );
     }
 }

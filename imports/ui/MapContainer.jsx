@@ -17,6 +17,18 @@ export default class MapContainer extends Component {
             console.log(pos)
             this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude] })
         })
+
+        // map.addLayer({
+        //     'id': 'collection',
+        //     'type': 'symbol',
+        //     'source': 'awesome',
+        //     'layout': {
+        //         'icon-image': '{icon}-15',
+        //         'text-field': '{title}',
+        //         'text-offset': [0, 0.6],
+        //         'text-anchor': 'top'
+        //     }
+        // })
     }
 
     getCenter() {
@@ -32,21 +44,37 @@ export default class MapContainer extends Component {
         return (
             <div className="super_class">
                 <Map
-                    center={this.state.mapCenter}>
-                    <Layer
-                        type="symbol"
-                        id="marker"
-                        layout={{ "icon-image": "marker-15" }}>
+                    center={this.state.mapCenter}
+                >
 
-                        <Feature
-                            key={0}
-                            onHover={this._onToggleHover.bind(this, "pointer")}
-                            onEndHover={this._onToggleHover.bind(this, "")}
-                            coordinates={[
-                                151.1470661,
-                                -33.9092054
-                            ]}/>
-                    </Layer>
+                    <Layer
+                        id="jewels"
+                        type="symbol"
+                        source="jewels"
+                        data={{
+                            "type": "FeatureCollection",
+                            "features": [{
+                                "type": "Feature",
+                                "properties": {
+                                    "title": "Mapbox UTS",
+                                    "icon": "harbor"
+                                },
+                                "geometry": {
+                                    "type": "Point",
+                                    "coordinates": [
+                                        151.1994834,
+                                        -33.8840109
+                                    ]
+                                }
+                            }]
+                        }}
+                        layout={{
+                            'icon-image': '{icon}-15',
+                            'text-field': '{title}',
+                            'text-offset': [0, 0.6],
+                            'text-anchor': 'top'
+                        }}
+                    />
                 </Map>
                 <AccountsUIWrapper />
             </div>
