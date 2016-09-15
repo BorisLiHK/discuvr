@@ -12,17 +12,17 @@ App.info({
 // Set up resources such as icons and launch screens.
 App.icons({
 	//Android
-	'android_ldpi':'resources/icons/icon-36x36.png',
-	'android_mdpi':'resources/icons/icon-48x48.png',
-	'android_hdpi':'resources/icons/icon-72x72.png',
-	'android_xhdpi':'resources/icons/icon-96x96.png'
+	'android_ldpi':'resources/icons/icon-ldpi.png',
+	'android_mdpi':'resources/icons/icon-mdpi.png',
+	'android_hdpi':'resources/icons/icon-hdpi.png',
+	'android_xhdpi':'resources/icons/icon-xhdpi.png'
 });
 App.launchScreens({
 	//Android
-	'android_ldpi_portrait':'resources/splash/splash-200x300.png',
-	'android_mdpi_portrait':'resources/splash/splash-320x480.png',
-	'android_hdpi_portrait':'resources/splash/splash-480x800.png',
-	'android_xhdpi_portrait':'resources/splash/splash-720x1280.png'
+	'android_ldpi_portrait':'resources/splash/splash-ldpi.png',
+	'android_mdpi_portrait':'resources/splash/splash-mdpi.png',
+	'android_hdpi_portrait':'resources/splash/splash-hdpi.png',
+	'android_xhdpi_portrait':'resources/splash/splash-xhdpi.png'
 });
 //
 // // Set PhoneGap/Cordova preferences
