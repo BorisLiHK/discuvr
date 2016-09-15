@@ -1,1 +1,1 @@
-import '../imports/api/jewels.js';
+import '../imports/api/jewels';

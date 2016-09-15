@@ -6,7 +6,7 @@ import Map from './Map';
 import Layer from './Layer'
 import Feature from "./Feature";
 import AccountsUIWrapper from './AccountsUIWrapper'
-import { Jewels } from '../api/jewels.js'
+import Jewels from '../api/jewels'
 
 class MapContainer extends Component {
     constructor(props) {
@@ -75,7 +75,16 @@ class MapContainer extends Component {
                             'text-anchor': 'top',
                             'icon-allow-overlap': true
                         }}
-                    />
+                    >
+                    {
+                        // this.props.jewels.map((jewel, index) => (
+                        //     <Feature 
+                        //         key={jewel.id}
+                        //     />
+                        // ))
+                        
+                    } 
+                    </Layer>
                 </Map>
                 <AccountsUIWrapper />
             </div>

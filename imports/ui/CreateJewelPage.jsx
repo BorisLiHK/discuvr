@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Form} from 'simple-react-form'
 import RaisedButton from 'material-ui/RaisedButton'
 
-import Jewels from '../api/jewelSchema.js'
+import Jewels from '../api/jewels'
 
 export default class CreateJewelPage extends Component {
     render() {
