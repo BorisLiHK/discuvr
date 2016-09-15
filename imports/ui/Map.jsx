@@ -51,13 +51,19 @@ export default class Map extends Component {
 
         MapboxGl.accessToken = accessToken;
 
+        var bounds = [
+            [151.1000, -33.9000], 
+            [151.3000, -33.8000]
+        ];
+        
+
         const map = new MapboxGl.Map({
             preserveDrawingBuffer,
             hash,
             zoom: zoom[0],
             minZoom,
             maxZoom,
-            maxBounds,
+            maxBounds: bounds,
             bearing,
             container: this.refs.mapboxContainer,
             center,
