@@ -24,11 +24,6 @@ App.launchScreens({
   'android_hdpi_portrait': 'resources/splash/splash-hdpi.png',
   'android_xhdpi_portrait': 'resources/splash/splash-xhdpi.png'
 });
-// App.launchScreens({
-//     'iphone': 'splash/Default~iphone.png',
-//     'iphone_2x': 'splash/Default@2x~iphone.png',
-//     // ... more screen sizes and platforms ...
-// });
 //
 // // Set PhoneGap/Cordova preferences
 // App.setPreference('BackgroundColor', '0xff0000ff');
