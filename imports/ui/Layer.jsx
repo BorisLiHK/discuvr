@@ -79,7 +79,7 @@ Layer.defaultProps = {
             "type": "Feature",
             "properties": {
                 "title": "Mapbox UTS",
-                "icon": "harbor"
+                "icon": "jewel_default"
             },
             "geometry": {
                 "type": "Point",

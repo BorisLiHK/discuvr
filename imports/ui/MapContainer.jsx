@@ -36,7 +36,7 @@ class MapContainer extends Component {
                 "properties": {
                     "title": "Mapbox UTS",
                     "description": "This is a test description",
-                    "icon": "harbor"
+                    "icon": "jewel_default"
                 },
                 "geometry": {
                     "type": "Point",
@@ -69,7 +69,8 @@ class MapContainer extends Component {
                         source="jewelsLayer"
                         data={this.getJewelData()}
                         layout={{
-                            'icon-image': '{icon}-15',
+                            'icon-image': '{icon}',
+                            //'icon-size': 1.5,
                             'text-field': '{title}',
                             'text-offset': [0, 0.6],
                             'text-anchor': 'top',

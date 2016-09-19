@@ -306,8 +306,8 @@ Map.defaultProps = {
     scrollZoom: true,
     movingMethod: "flyTo",
     pitch: 60,
-    style: 'mapbox://styles/mapbox/light-v9',
-    accessToken: 'pk.eyJ1IjoiYWxleGQiLCJhIjoiY2lycmd5anZpMGk1cGZrbTYzMHU3OGJ5YiJ9.5cKvcoZRsDYxzFsCjJLG4Q',
+    style: 'mapbox://styles/boriskenli/cit9v0ctt001u2hp3tp148ccr',
+    accessToken: 'pk.eyJ1IjoiYm9yaXNrZW5saSIsImEiOiJjaXQzeHZudWYwMDNjMnNsZXBmN29nbHlsIn0.kdE7_5U86Vf4gnAIYvQ3zg',
     // onStyleLoad: function (map) {
     //     map.addSource('points', {
     //         type: 'geojson',
