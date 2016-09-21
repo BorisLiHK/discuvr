@@ -51,11 +51,15 @@ export default class Map extends Component {
 
         MapboxGl.accessToken = accessToken;
 
+        //currently hardcoded coordinates to MLC Centre
+        var lat = 151.2093;
+        var lng = -33.8688;
+
         var bounds = [
-            [151.1000, -33.9000], 
-            [151.3000, -33.8000]
+            [(lat - 0.007), (lng - 0.007)],
+            [(lat + 0.007), (lng + 0.007)] 
         ];
-        
+
         const map = new MapboxGl.Map({
             preserveDrawingBuffer,
             hash,
