@@ -10,16 +10,20 @@ App.info({
 });
 
 // Set up resources such as icons and launch screens.
-// App.icons({
-//     'iphone': 'icons/icon-60.png',
-//     'iphone_2x': 'icons/icon-60@2x.png',
-//     // ... more screen sizes and platforms ...
-// });
-// App.launchScreens({
-//     'iphone': 'splash/Default~iphone.png',
-//     'iphone_2x': 'splash/Default@2x~iphone.png',
-//     // ... more screen sizes and platforms ...
-// });
+App.icons({
+  // Android
+  'android_ldpi': 'resources/icons/icon-ldpi.png',
+  'android_mdpi': 'resources/icons/icon-mdpi.png',
+  'android_hdpi': 'resources/icons/icon-hdpi.png',
+  'android_xhdpi': 'resources/icons/icon-xhdpi.png'
+});
+App.launchScreens({
+  // Android
+  'android_ldpi_portrait': 'resources/splash/splash-ldpi.png',
+  'android_mdpi_portrait': 'resources/splash/splash-mdpi.png',
+  'android_hdpi_portrait': 'resources/splash/splash-hdpi.png',
+  'android_xhdpi_portrait': 'resources/splash/splash-xhdpi.png'
+});
 //
 // // Set PhoneGap/Cordova preferences
 // App.setPreference('BackgroundColor', '0xff0000ff');
