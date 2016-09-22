@@ -76,6 +76,8 @@ export default class Map extends Component {
             scrollZoom
         });
 
+        map.dragPan.disable();
+
 
         map.on("style.load", (...args) => {
             if (onStyleLoad) {
@@ -130,7 +132,7 @@ export default class Map extends Component {
             if (!features.length) { return; }
 
             var feature = features[0];
-            console.log("onClick working!")
+            console.log(feature)
             //Do something with the feature
         });
 
@@ -138,9 +140,6 @@ export default class Map extends Component {
             if (onMouseMove) {
                 onMouseMove(map, ...args);
             }
-
-            var features = map.queryRenderedFeatures(args[0].point, { layers: ['jewelsLayer']});
-            map.getCanvas().style.cursor = (features.length) ? 'pointer' : ''
         });
 
         map.on("dragstart", (...args) => {
