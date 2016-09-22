@@ -3,8 +3,7 @@ import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import Text from 'simple-react-form-material-ui/lib/text';
 import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object'
-
-const Jewels = new Mongo.Collection('jewels');
+import Jewels from './jewels'
 
 SimpleSchema.extendOptions({
   srf: Match.Optional(Object)
