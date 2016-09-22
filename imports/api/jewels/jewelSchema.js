@@ -4,7 +4,7 @@ import Text from 'simple-react-form-material-ui/lib/text';
 import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 import Textarea from 'simple-react-form-material-ui/lib/textarea'
-import { CoordinateSchema } from '../helpers'
+import CoordinateSchema from '../helpers'
 
 import Jewels from './jewels'
 
