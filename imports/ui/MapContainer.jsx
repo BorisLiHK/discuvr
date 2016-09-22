@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import Map from './Map';
 import Layer from './Layer'
@@ -95,8 +97,15 @@ class MapContainer extends Component {
                     } 
                     </Layer>
                 </Map>
-
                 <AccountsUIWrapper />
+                
+                <FloatingActionButton href="create-jewel" style={{
+                    position: "fixed",
+                    right: 20,
+                    bottom: 20
+                }}>
+                    <ContentAdd />
+                </FloatingActionButton>
             </div>
         );
     }

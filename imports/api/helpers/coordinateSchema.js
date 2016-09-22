@@ -1,12 +1,13 @@
 import {Match} from 'meteor/check'
 import {SimpleSchema} from 'meteor/aldeed:simple-schema'
 import Text from 'simple-react-form-material-ui/lib/text'
+import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 
 SimpleSchema.extendOptions({
     srf: Match.Optional(Object)
 });
 
-export default CoordinateSchema = new SimpleSchema({
+const CoordinateSchema = new SimpleSchema({
     longitude: {
         type: Number,
         decimal: true,
@@ -26,3 +27,5 @@ export default CoordinateSchema = new SimpleSchema({
         }
     }
 })
+
+export default CoordinateSchema
