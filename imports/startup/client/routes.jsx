@@ -7,6 +7,7 @@ import App from '../../ui/App'
 import MapContainer from '../../ui/MapContainer'
 import LoginPage from '../../ui/LoginPage'
 import CreateJewelPage from '../../ui/CreateJewelPage'
+import CreateCirclePage from '../../ui/CreateCirclePage'
 
 function redirectToMap(nextState, replace) {
     if (Meteor.userId()) {
@@ -33,6 +34,8 @@ export const renderRoutes = () => (
             {/*<Route path="history" component={History} onEnter={redirectToLogin} />*/}
             <Route path="login" component={LoginPage}  onEnter={redirectToMap} />
             <Route path="create-jewel" component={CreateJewelPage} />
+            <Route path="create-circle" component={CreateCirclePage} />
         </Route>
     </Router>
 );
+
