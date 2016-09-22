@@ -1,1 +1,2 @@
-export CoordinateSchema from './coordinateSchema'
+//export *, CoordinateSchema from './coordinateSchema'
+export * from './coordinateSchema'
