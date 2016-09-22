@@ -1,0 +1,1 @@
+export CoordinateSchema from './coordinateSchema'

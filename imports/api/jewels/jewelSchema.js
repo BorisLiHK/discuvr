@@ -4,32 +4,12 @@ import Text from 'simple-react-form-material-ui/lib/text';
 import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 import Textarea from 'simple-react-form-material-ui/lib/textarea'
+import { CoordinateSchema } from '../helpers'
 
 import Jewels from './jewels'
 
 SimpleSchema.extendOptions({
   srf: Match.Optional(Object)
-});
-
-CoordinateSchema = new SimpleSchema({
-    longitude: {
-        type: Number,
-        decimal: true,
-        min: -180,
-        max: 180,
-        srf: {
-            type: Text
-        }
-    },
-    latitude: {
-        type: Number,
-        decimal: true,
-        min: -90,
-        max: 90,
-        srf: {
-            type: Text
-        }
-    }
 });
 
 Jewels.attachSchema({
