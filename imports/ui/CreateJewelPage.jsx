@@ -6,6 +6,9 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Jewels from '../api/jewels'
 
 export default class CreateJewelPage extends Component {
+    handleSubmit(event) {
+        Console.log(this);
+    }
     render() {
         return (
             <div>
@@ -13,7 +16,8 @@ export default class CreateJewelPage extends Component {
                 <Form
                     collection={Jewels}
                     type='insert'
-                    ref='createjewelform'
+                    ref='form'
+                    logErrors
                 />
                 <RaisedButton primary label='Create' onTouchTap={() => this.refs.form.submit()}/>
             </div>

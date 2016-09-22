@@ -5,34 +5,64 @@ import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 
 const Jewels = new Mongo.Collection('jewels');
 
-CoordinateSchema = new SimpleSchema({
-    longitude: {
-        type: Number
-    },
-    latitude: {
-        type: Number
-    }
-});
-
 SimpleSchema.extendOptions({
   srf: Match.Optional(Object)
+});
+
+CoordinateSchema = new SimpleSchema({
+    longitude: {
+        type: Number,
+        decimal: true,
+        srf: {
+            type: Text
+        }
+    },
+    latitude: {
+        type: Number,
+        decimal: true,
+        srf: {
+            type: Text
+        }
+    }
 });
 
 Jewels.attachSchema({
     userId: {
         type: String,
+        autoValue: function() {
+            return this.userId
+        },
         srf: {
-        	type: Text
+            omit: true
         }
     },
     createdAt: {
     	type: Date,
+        autoValue: function()  {
+            return new Date()
+        },
     	srf: {
-    		type: DatePicker
+            omit: true
     	}
     },
+    title: {
+        type: String,
+        srf: {
+            type: Text
+        }
+    },
+    date: {
+        type: Date,
+        optional: true,
+        srf: {
+            type: DatePicker
+        }
+    },
     coordinates: {
-        type: CoordinateSchema
+        type: CoordinateSchema,
+        srf: {
+            type: ObjectComponent
+        }
     }
 });
 
