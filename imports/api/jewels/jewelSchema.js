@@ -25,7 +25,7 @@ Jewels.attachSchema({
         	type: Text
         }
     },
-    createdat: {
+    createdAt: {
     	type: Date,
     	srf: {
     		type: DatePicker
