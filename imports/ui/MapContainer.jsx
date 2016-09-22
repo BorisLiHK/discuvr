@@ -83,7 +83,9 @@ class MapContainer extends Component {
                         this.props.jewels.map((jewel, index) => (
 
                             <Feature
+                                key={jewel._id}
                                 id={jewel.id}
+                                title={jewel.title}
                                 coordinates={[
                                     jewel.coordinates.longitude,
                                     jewel.coordinates.latitude
@@ -107,8 +109,6 @@ MapContainer.PropTypes = {
 
 export default createContainer(() => {
     Meteor.subscribe('jewels');
-
-    console.log(Jewels)
 
     return {
         jewels: Jewels.find().fetch()

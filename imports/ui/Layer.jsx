@@ -25,7 +25,7 @@ export default class Layer extends Component {
                     "type" : "Feature",
                     "properties": {
                         "icon": "jewel_default",
-                        "title": "demo demo"
+                        "title": feature.props.title
                     },
                     "geometry": {
                         "type": "Point",
@@ -38,7 +38,7 @@ export default class Layer extends Component {
                 "type" : "Feature",
                 "properties": {
                     "icon": "jewel_default",
-                    "title": "demo two"
+                    "title": feature.props.title
                 },
                 "geometry": {
                     "type": "Point",
