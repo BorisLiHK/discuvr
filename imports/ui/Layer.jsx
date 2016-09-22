@@ -33,7 +33,7 @@ export default class Layer extends Component {
                     }
                 })
             })
-        } else {
+        } else if (this.props.children.length != 0) {
             jewelData.features.push({
                 "type" : "Feature",
                 "properties": {
@@ -51,7 +51,6 @@ export default class Layer extends Component {
     }
 
     componentWillMount() {
-        console.log(this.props.children)
         const { map } = this.context
 
         map.addSource(this.props.source, {

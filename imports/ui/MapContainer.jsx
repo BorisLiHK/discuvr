@@ -17,7 +17,6 @@ class MapContainer extends Component {
         }
 
         navigator.geolocation.getCurrentPosition((pos) => {
-            console.log(pos)
             this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude] })
         });
     }
@@ -59,7 +58,6 @@ class MapContainer extends Component {
     }
 
     render() {
-        console.log(this.props.jewels)
         return (
             <div className="super_class">
                 <Map

@@ -59,7 +59,7 @@ export default class Map extends Component {
         MapboxGl.accessToken = accessToken;
 
         //currently hardcoded coordinates to MLC Centre
-        console.log(`bounds`, this.props.center)
+        //console.log(`bounds`, this.props.center)
 
         const map = new MapboxGl.Map({
             preserveDrawingBuffer,
@@ -192,7 +192,6 @@ export default class Map extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(`new props`, nextProps)
         const { map } = this.state;
         if (!map) {
             return null;
