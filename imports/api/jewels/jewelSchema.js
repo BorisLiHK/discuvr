@@ -9,7 +9,7 @@ CoordinateSchema = new SimpleSchema({
     longitude: {
         type: Number
     },
-    lattitude: {
+    latitude: {
         type: Number
     }
 });
