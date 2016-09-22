@@ -34,7 +34,7 @@ class MapContainer extends Component {
             "features": [{
                 "type": "Feature",
                 "properties": {
-                    "title": "Mapbox UTS",
+                    // "title": "Mapbox UTS",
                     "description": "This is a test description",
                     "icon": "jewel_default"
                 },
@@ -78,6 +78,11 @@ class MapContainer extends Component {
                             'icon-allow-overlap': true
                         }}
                     >
+
+                    <Feature 
+                        id={0}
+                        coordinates={this.state.mapCenter}
+                    />
                     {
                         // this.props.jewels.map((jewel, index) => (
                         //     <Feature 
@@ -88,6 +93,7 @@ class MapContainer extends Component {
                     } 
                     </Layer>
                 </Map>
+
                 <AccountsUIWrapper />
             </div>
         );
