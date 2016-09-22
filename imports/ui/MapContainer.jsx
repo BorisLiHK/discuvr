@@ -7,6 +7,7 @@ import Layer from './Layer'
 import Feature from "./Feature";
 import AccountsUIWrapper from './AccountsUIWrapper'
 import Jewels from '../api/jewels'
+import Circles from '../api/circles'
 
 class MapContainer extends Component {
     constructor(props) {
@@ -102,13 +103,16 @@ class MapContainer extends Component {
 }
 
 MapContainer.PropTypes = {
-    jewels: PropTypes.array.isRequired
+    jewels: PropTypes.array.isRequired,
+    circles: PropTypes.array.isRequred
 };
 
 export default createContainer(() => {
     Meteor.subscribe('jewels');
+    Meteor.subscribe('circles');
 
     return {
-        jewels: Jewels.find().fetch()
+        jewels: Jewels.find().fetch(),
+        circles: Circles.find().fetch()
     };
 }, MapContainer);
