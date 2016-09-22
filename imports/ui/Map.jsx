@@ -76,8 +76,7 @@ export default class Map extends Component {
 
         MapboxGl.accessToken = accessToken;
 
-        //currently hardcoded coordinates to MLC Centre
-        //console.log(`bounds`, this.props.center)
+        console.log(`bounds`, this.props.center)
 
         const map = new MapboxGl.Map({
             preserveDrawingBuffer,
@@ -92,10 +91,7 @@ export default class Map extends Component {
             pitch,
             style,
             scrollZoom
-        });
-
-        map.dragPan.disable();
-
+        });    
 
         map.on("style.load", (...args) => {
             if (onStyleLoad) {
@@ -145,13 +141,6 @@ export default class Map extends Component {
             if (onClick) {
                 onClick(map, ...args);
             }
-
-            var features = map.queryRenderedFeatures(args[0].point, { layers: ['jewelsLayer']});
-            if (!features.length) { return; }
-
-            var feature = features[0];
-            console.log(feature)
-            //Do something with the feature
         });
 
         map.on("mousemove", (...args) => {
@@ -200,6 +189,12 @@ export default class Map extends Component {
             if (onZoom) {
                 onZoom(map, ...args);
             }
+            //console.log("ZoomLevel:", map.getZoom());
+            var zoomLevel = map.getZoom();
+            var newPitch = ((zoomLevel-15)*((60-30)/(20-15))+30);
+            map.setPitch(newPitch);
+            //console.log("pitchLevel: ", newPitch);
+            this.setState({ map });
         });
         //update location of user avatar on the map every 2s
         map.on("load",function(){
@@ -229,6 +224,7 @@ export default class Map extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log(`new props`, nextProps)
         const { map } = this.state;
         if (!map) {
             return null;
