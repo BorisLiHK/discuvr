@@ -125,12 +125,22 @@ export default class Map extends Component {
             if (onClick) {
                 onClick(map, ...args);
             }
+
+            var features = map.queryRenderedFeatures(args[0].point, { layers: ['jewelsLayer']});
+            if (!features.length) { return; }
+
+            var feature = features[0];
+            console.log("onClick working!")
+            //Do something with the feature
         });
 
         map.on("mousemove", (...args) => {
             if (onMouseMove) {
                 onMouseMove(map, ...args);
             }
+
+            var features = map.queryRenderedFeatures(args[0].point, { layers: ['jewelsLayer']});
+            map.getCanvas().style.cursor = (features.length) ? 'pointer' : ''
         });
 
         map.on("dragstart", (...args) => {
