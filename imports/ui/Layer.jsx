@@ -24,7 +24,8 @@ export default class Layer extends Component {
                 jewelData.features.push({
                     "type" : "Feature",
                     "properties": {
-                        "icon": "harbor"
+                        "icon": "jewel_default",
+                        "title": "demo demo"
                     },
                     "geometry": {
                         "type": "Point",
@@ -36,7 +37,8 @@ export default class Layer extends Component {
             jewelData.features.push({
                 "type" : "Feature",
                 "properties": {
-                    "icon": "harbor"
+                    "icon": "jewel_default",
+                    "title": "demo two"
                 },
                 "geometry": {
                     "type": "Point",
@@ -44,11 +46,12 @@ export default class Layer extends Component {
                 }
             })
         }
-        console.log(JSON.stringify(jewelData))
+        // console.log(JSON.stringify(jewelData))
         return jewelData
     }
 
     componentWillMount() {
+        console.log(this.props.children)
         const { map } = this.context
 
         map.addSource(this.props.source, {
@@ -75,7 +78,7 @@ export default class Layer extends Component {
     render() {
         const { map } = this.context
 
-        map.getSource(this.props.source).setData(this.getJewelData)
+        map.getSource(this.props.source).setData(this.getJewelData())
         return null
     }
 
@@ -114,7 +117,7 @@ Layer.defaultProps = {
             "type": "Feature",
             "properties": {
                 "title": "Mapbox UTS",
-                "icon": "harbor"
+                "icon": "jewel_default"
             },
             "geometry": {
                 "type": "Point",

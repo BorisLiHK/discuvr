@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
+const Jewels = new Mongo.Collection('jewels');
+
 if (Meteor.isServer) {
     // This code only runs on the server
     // Only publish jewels that are public or belong to the current user
@@ -63,3 +65,5 @@ Meteor.methods({
     //     Jewels.update(jewelId, { $set: { private: setToPrivate } });
     // },
 });
+
+export default Jewels
