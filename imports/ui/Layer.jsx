@@ -51,6 +51,7 @@ export default class Layer extends Component {
     }
 
     componentWillMount() {
+        console.log(this.props.children)
         const { map } = this.context
 
         map.addSource(this.props.source, {
