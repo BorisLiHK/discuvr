@@ -192,7 +192,7 @@ export default class Map extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(`new props ${nextProps}`)
+        console.log(`new props`, nextProps)
         const { map } = this.state;
         if (!map) {
             return null;
@@ -223,7 +223,6 @@ export default class Map extends Component {
                 center: didCenterUpdate ? nextProps.center : center,
                 bearing: didBearingUpdate ? nextProps.bearing : bearing
             });
-            console.log('centre', this.props.center)
             map.setMaxBounds(this.getBounds(nextProps.center))
         }
 
