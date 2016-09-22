@@ -19,6 +19,13 @@ export default class Map extends Component {
         return {map: this.state.map}
     };
 
+    getBounds(center) {
+        return [
+            [(center[0] - 0.007), (center[1] - 0.007)],
+            [(center[0] + 0.007), (center[1] + 0.007)]
+        ]
+    }
+
     componentWillMount() {
 
     }
@@ -52,13 +59,7 @@ export default class Map extends Component {
         MapboxGl.accessToken = accessToken;
 
         //currently hardcoded coordinates to MLC Centre
-        var lat = 151.2093;
-        var lng = -33.8688;
-
-        var bounds = [
-            [(lat - 0.007), (lng - 0.007)],
-            [(lat + 0.007), (lng + 0.007)] 
-        ];
+        console.log(`bounds`, this.props.center)
 
         const map = new MapboxGl.Map({
             preserveDrawingBuffer,
@@ -66,7 +67,7 @@ export default class Map extends Component {
             zoom: zoom[0],
             minZoom,
             maxZoom,
-            maxBounds: bounds,
+            maxBounds: this.getBounds(this.props.center),
             bearing,
             container: this.refs.mapboxContainer,
             center,
@@ -222,6 +223,8 @@ export default class Map extends Component {
                 center: didCenterUpdate ? nextProps.center : center,
                 bearing: didBearingUpdate ? nextProps.bearing : bearing
             });
+            console.log('centre', this.props.center)
+            map.setMaxBounds(this.getBounds(nextProps.center))
         }
 
         if (!isEqual(this.props.style, nextProps.style)) {
