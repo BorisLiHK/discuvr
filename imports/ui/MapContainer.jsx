@@ -59,6 +59,7 @@ class MapContainer extends Component {
     }
 
     render() {
+        console.log(this.props.jewels)
         return (
             <div className="super_class">
                 <Map
@@ -67,7 +68,6 @@ class MapContainer extends Component {
                         id="jewelsLayer"
                         type="symbol"
                         source="jewelsLayer"
-                        data={this.getJewelData()}
                         layout={{
                             'icon-image': '{icon}',
                             //'icon-size': 1.5,
@@ -79,16 +79,17 @@ class MapContainer extends Component {
                         }}
                     >
 
-                    <Feature 
-                        id={0}
-                        coordinates={this.state.mapCenter}
-                    />
                     {
-                        // this.props.jewels.map((jewel, index) => (
-                        //     <Feature 
-                        //         key={jewel.id}
-                        //     />
-                        // ))
+                        this.props.jewels.map((jewel, index) => (
+
+                            <Feature
+                                id={jewel.id}
+                                coordinates={[
+                                    jewel.coordinates.longitude,
+                                    jewel.coordinates.latitude
+                                ]}
+                            />
+                        ))
                         
                     } 
                     </Layer>

@@ -5,7 +5,7 @@ import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 import Textarea from 'simple-react-form-material-ui/lib/textarea'
 
-const Jewels = new Mongo.Collection('jewels');
+import Jewels from './jewels'
 
 SimpleSchema.extendOptions({
   srf: Match.Optional(Object)
@@ -21,7 +21,7 @@ CoordinateSchema = new SimpleSchema({
             type: Text
         }
     },
-    lattitude: {
+    latitude: {
         type: Number,
         decimal: true,
         min: -90,
@@ -42,7 +42,7 @@ Jewels.attachSchema({
             omit: true
         }
     },
-    createdat: {
+    createdAt: {
     	type: Date,
         autoValue: function()  {
             return new Date()
