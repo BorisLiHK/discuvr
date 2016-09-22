@@ -19,6 +19,13 @@ export default class Map extends Component {
         return {map: this.state.map}
     };
 
+    getBounds(center) {
+        return [
+            [(center[0] - 0.007), (center[1] - 0.007)],
+            [(center[0] + 0.007), (center[1] + 0.007)]
+        ]
+    }
+
     componentWillMount() {
 
     }
@@ -52,13 +59,7 @@ export default class Map extends Component {
         MapboxGl.accessToken = accessToken;
 
         //currently hardcoded coordinates to MLC Centre
-        var lat = 151.2093;
-        var lng = -33.8688;
-
-        var bounds = [
-            [(lat - 0.007), (lng - 0.007)],
-            [(lat + 0.007), (lng + 0.007)] 
-        ];
+        console.log(`bounds`, this.props.center)
 
         const map = new MapboxGl.Map({
             preserveDrawingBuffer,
@@ -66,7 +67,7 @@ export default class Map extends Component {
             zoom: zoom[0],
             minZoom,
             maxZoom,
-            maxBounds: bounds,
+            maxBounds: this.getBounds(this.props.center),
             bearing,
             container: this.refs.mapboxContainer,
             center,
@@ -191,7 +192,7 @@ export default class Map extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(`new props ${nextProps}`)
+        console.log(`new props`, nextProps)
         const { map } = this.state;
         if (!map) {
             return null;
@@ -222,6 +223,7 @@ export default class Map extends Component {
                 center: didCenterUpdate ? nextProps.center : center,
                 bearing: didBearingUpdate ? nextProps.bearing : bearing
             });
+            map.setMaxBounds(this.getBounds(nextProps.center))
         }
 
         if (!isEqual(this.props.style, nextProps.style)) {
@@ -295,8 +297,8 @@ Map.defaultProps = {
     scrollZoom: true,
     movingMethod: "flyTo",
     pitch: 60,
-    style: 'mapbox://styles/mapbox/light-v9',
-    accessToken: 'pk.eyJ1IjoiYWxleGQiLCJhIjoiY2lycmd5anZpMGk1cGZrbTYzMHU3OGJ5YiJ9.5cKvcoZRsDYxzFsCjJLG4Q',
+    style: 'mapbox://styles/boriskenli/cit9v0ctt001u2hp3tp148ccr',
+    accessToken: 'pk.eyJ1IjoiYm9yaXNrZW5saSIsImEiOiJjaXQzeHZudWYwMDNjMnNsZXBmN29nbHlsIn0.kdE7_5U86Vf4gnAIYvQ3zg',
     // onStyleLoad: function (map) {
     //     map.addSource('points', {
     //         type: 'geojson',

@@ -13,15 +13,47 @@ export default class Layer extends Component {
         super(props)
     }
 
-    componentDidMount() {
-        const { map } = this.context
+    getJewelData() {
+        let jewelData = {
+            "type": "FeatureCollection",
+            "features": []
+        }
 
-        console.log(map)
-        console.log(this.props)
+        if (this.props.children.length > 1) {
+            this.props.children.map(feature => {
+                jewelData.features.push({
+                    "type" : "Feature",
+                    "properties": {
+                        "icon": "harbor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": feature.props.coordinates
+                    }
+                })
+            })
+        } else {
+            jewelData.features.push({
+                "type" : "Feature",
+                "properties": {
+                    "icon": "harbor"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": this.props.children.props.coordinates
+                }
+            })
+        }
+        console.log(JSON.stringify(jewelData))
+        return jewelData
+    }
+
+    componentWillMount() {
+        const { map } = this.context
 
         map.addSource(this.props.source, {
             type: 'geojson',
-            data: this.props.data
+            data: this.getJewelData()
         })
 
         map.addLayer({
@@ -41,6 +73,9 @@ export default class Layer extends Component {
     }
 
     render() {
+        const { map } = this.context
+
+        map.getSource(this.props.source).setData(this.getJewelData)
         return null
     }
 
@@ -79,7 +114,7 @@ Layer.defaultProps = {
             "type": "Feature",
             "properties": {
                 "title": "Mapbox UTS",
-                "icon": "harbor"
+                "icon": "jewel_default"
             },
             "geometry": {
                 "type": "Point",
