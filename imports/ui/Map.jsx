@@ -51,11 +51,14 @@ export default class Map extends Component {
 
         MapboxGl.accessToken = accessToken;
 
+        //currently hardcoded coordinates to MLC Centre
+        var lat = 151.2093;
+        var lng = -33.8688;
+
         var bounds = [
-            [151.1000, -33.9000], 
-            [151.3000, -33.8000]
+            [(lat - 0.007), (lng - 0.007)],
+            [(lat + 0.007), (lng + 0.007)] 
         ];
-        
 
         const map = new MapboxGl.Map({
             preserveDrawingBuffer,
@@ -121,26 +124,12 @@ export default class Map extends Component {
             if (onClick) {
                 onClick(map, ...args);
             }
-
-            var features = map.queryRenderedFeatures(args[0].point, { layers: ['jewelsLayer'] });
-            if (!features.length) {
-                return;
-            }
-
-            var feature = features[0];
-            var popup = new MapboxGl.Popup()
-                .setLngLat(feature.geometry.coordinates)
-                .setHTML(feature.properties.description)
-                .addTo(map);
         });
 
         map.on("mousemove", (...args) => {
             if (onMouseMove) {
                 onMouseMove(map, ...args);
             }
-
-            var features = map.queryRenderedFeatures(args[0].point, { layers: ['jewelsLayer'] });
-            map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
         });
 
         map.on("dragstart", (...args) => {
