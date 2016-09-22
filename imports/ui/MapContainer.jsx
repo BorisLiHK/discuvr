@@ -91,6 +91,7 @@ class MapContainer extends Component {
                     } 
                     </Layer>
                 </Map>
+
                 <AccountsUIWrapper />
             </div>
         );
