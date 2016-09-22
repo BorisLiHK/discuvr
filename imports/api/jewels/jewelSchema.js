@@ -10,34 +10,64 @@ import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 
 const Jewels = new Mongo.Collection('jewels');
 
-CoordinateSchema = new SimpleSchema({
-    longitude: {
-        type: Number
-    },
-    lattitude: {
-        type: Number
-    }
-});
-
 SimpleSchema.extendOptions({
   srf: Match.Optional(Object)
+});
+
+CoordinateSchema = new SimpleSchema({
+    longitude: {
+        type: Number,
+        decimal: true,
+        srf: {
+            type: Text
+        }
+    },
+    lattitude: {
+        type: Number,
+        decimal: true,
+        srf: {
+            type: Text
+        }
+    }
 });
 
 Jewels.attachSchema({
     userId: {
         type: String,
+        autoValue: function() {
+            return this.userId
+        },
         srf: {
-        	type: Text
+            omit: true
         }
     },
     createdat: {
     	type: Date,
+        autoValue: function()  {
+            return new Date()
+        },
     	srf: {
-    		type: DatePicker
+            omit: true
     	}
     },
+    title: {
+        type: String,
+        srf: {
+            type: Text
+        }
+    },
+    date: {
+        type: Date,
+        optional: true,
+        srf: {
+            type: DatePicker
+        }
+    },
     coordinates: {
-        type: CoordinateSchema
+        type: CoordinateSchema,
+        srf: {
+            type: ObjectComponent
+        }
     }
 });
 
