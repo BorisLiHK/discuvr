@@ -18,17 +18,18 @@ class MapContainer extends Component {
         this.state = {
             mapCenter: this.getCenter()
         }
-
-        navigator.geolocation.getCurrentPosition((pos) => {
-            this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude] })
+        navigator.geolocation.getCurrentPosition((pos)=>{
+            this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude]});
         });
     }
-
-    getCurrentLocation() {
-        navigator.geolocation.getCurrentPosition((pos) => {
-            return [pos.coords.longitude, pos.coords.latitude]
-        })
-    }
+    //test code to update location via setInterval() 
+    /*updateCenter(){
+        console.log("updateCenter() called");
+        navigator.geolocation.getCurrentPosition((pos)=>{
+            this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude]});
+        });
+        console.log(this.state.mapCenter);
+    }*/
 
     getJewelData() {
         return {
@@ -60,11 +61,13 @@ class MapContainer extends Component {
         map.getCanvas().style.cursor = cursor;
     }
 
+    componentDidMount(){
+    }
+
     render() {
         return (
             <div className="super_class">
-                <Map
-                    center={this.state.mapCenter}>
+                <Map center={this.state.mapCenter}>
                     <Layer
                         id="jewelsLayer"
                         type="symbol"
@@ -79,6 +82,7 @@ class MapContainer extends Component {
                             'icon-allow-overlap': true
                         }}
                     >
+
 
                     {
                         this.props.jewels.map((jewel, index) => (

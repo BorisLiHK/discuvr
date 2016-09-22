@@ -25,6 +25,24 @@ export default class Map extends Component {
             [(center[0] + 0.007), (center[1] + 0.007)]
         ]
     }
+    //test code to add avatar as a feature
+    /*getCurrentLocation(){
+        navigator.geolocation.getCurrentPosition((pos)=>{
+            return{
+                "type":"Feature",
+                "properties":{
+                    "icon":"User"
+                },
+                "geometry":{
+                    "type":"point",
+                    "coordinates":[
+                        pos.cords.longitude,
+                        pos.cords.latitude
+                    ]
+                }
+            }
+        })
+    }*/
 
     componentWillMount() {
 
@@ -67,7 +85,7 @@ export default class Map extends Component {
             zoom: zoom[0],
             minZoom,
             maxZoom,
-            maxBounds: this.getBounds(this.props.center),
+            maxBounds,//: this.getBounds(this.props.center),
             bearing,
             container: this.refs.mapboxContainer,
             center,
@@ -183,6 +201,16 @@ export default class Map extends Component {
                 onZoom(map, ...args);
             }
         });
+        //update location of user avatar on the map every 2s
+        map.on("load",function(){
+            window.setInterval(function(){
+                var onSuccess=function(position){
+                    map.flyTo({center:[position.coords.longitude,position.coords.latitude]});
+                    console.log("Location updated");
+                };
+                navigator.geolocation.getCurrentPosition(onSuccess);
+            },2000);
+        });
     }
 
     componentWillUnmount() {
@@ -288,7 +316,8 @@ Map.propTypes = {
         "jumpTo",
         "easeTo",
         "flyTo"
-    ])
+    ]),
+    //showsUserLocation:PropTypes.bool
 };
 
 Map.defaultProps = {
@@ -304,6 +333,7 @@ Map.defaultProps = {
     bearing: 0,
     scrollZoom: true,
     movingMethod: "flyTo",
+    //showsUserLocation:true,
     pitch: 60,
     style: 'mapbox://styles/boriskenli/cit9v0ctt001u2hp3tp148ccr',
     accessToken: 'pk.eyJ1IjoiYm9yaXNrZW5saSIsImEiOiJjaXQzeHZudWYwMDNjMnNsZXBmN29nbHlsIn0.kdE7_5U86Vf4gnAIYvQ3zg',
