@@ -2,14 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import JewelIcon from 'material-ui/svg-icons/maps/add-location';
+import ProfileIcon from 'material-ui/svg-icons/social/person';
 
 import Map from './Map';
 import Layer from './Layer'
 import Feature from "./Feature";
-import AccountsUIWrapper from './AccountsUIWrapper'
-import Jewels from '../api/jewels'
-import Circles from '../api/circles'
+import AccountsUIWrapper from './AccountsUIWrapper';
+import Jewels from '../api/jewels';
+import Circles from '../api/circles';
+import Profiles from '../api/profiles';
 
 class MapContainer extends Component {
     constructor(props) {
@@ -65,6 +67,7 @@ class MapContainer extends Component {
     }
 
     render() {
+        console.log(this.props.profiles.length);
         return (
             <div className="super_class">
                 <Map center={this.state.mapCenter}>
@@ -102,13 +105,21 @@ class MapContainer extends Component {
                     </Layer>
                 </Map>
                 <AccountsUIWrapper />
+
+                <FloatingActionButton href="create-profile" style={{
+                    position:"fixed",
+                    right:20,
+                    top:20,
+                }}>
+                    <ProfileIcon/>
+                </FloatingActionButton>
                 
                 <FloatingActionButton href="create-jewel" style={{
                     position: "fixed",
                     right: 20,
-                    bottom: 20
+                    bottom: 20,
                 }}>
-                    <ContentAdd />
+                    <JewelIcon/>
                 </FloatingActionButton>
             </div>
         );
@@ -117,15 +128,18 @@ class MapContainer extends Component {
 
 MapContainer.PropTypes = {
     jewels: PropTypes.array.isRequired,
-    circles: PropTypes.array.isRequred
+    circles: PropTypes.array.isRequred, 
+    profiles: PropTypes.array.isRequired,
 };
 
 export default createContainer(() => {
     Meteor.subscribe('jewels');
     Meteor.subscribe('circles');
+    Meteor.subscribe('profiles');
 
     return {
         jewels: Jewels.find().fetch(),
-        circles: Circles.find().fetch()
+        circles: Circles.find().fetch(),
+        profiles: Profiles.find().fetch(),
     };
 }, MapContainer);

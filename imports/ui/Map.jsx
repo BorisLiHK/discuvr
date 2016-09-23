@@ -84,7 +84,7 @@ export default class Map extends Component {
             zoom: zoom[0],
             minZoom,
             maxZoom,
-            maxBounds,//: this.getBounds(this.props.center),
+            maxBounds: this.getBounds(this.props.center),
             bearing,
             container: this.refs.mapboxContainer,
             center,
@@ -197,15 +197,15 @@ export default class Map extends Component {
             this.setState({ map });
         });
         //update location of user avatar on the map every 2s
-        map.on("load",function(){
+        /*map.on("load",function(){
             window.setInterval(function(){
-                var onSuccess=function(position){
-                    map.flyTo({center:[position.coords.longitude,position.coords.latitude]});
-                    console.log("Location updated");
-                };
-                navigator.geolocation.getCurrentPosition(onSuccess);
-            },2000);
-        });
+                var onSuccess=function(pos){
+                    map.flyTo({center: [pos.coords.longitude, pos.coords.latitude]})
+                    console.log("Location updated"+pos)
+                }
+                navigator.geolocation.getCurrentPosition(onSuccess)
+            },5000);
+        });*/
     }
 
     componentWillUnmount() {

@@ -1,1 +1,1 @@
-export*from'./profileSchema.js';
+export * from './profileSchema.js';
