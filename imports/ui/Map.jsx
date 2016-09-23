@@ -73,7 +73,10 @@ export default class Map extends Component {
             pitch,
             style,
             scrollZoom
-        });    
+        });
+
+        map.dragPan.disable();
+
 
         map.on("style.load", (...args) => {
             if (onStyleLoad) {
@@ -171,11 +174,9 @@ export default class Map extends Component {
             if (onZoom) {
                 onZoom(map, ...args);
             }
-            //console.log("ZoomLevel:", map.getZoom());
             var zoomLevel = map.getZoom();
-            var newPitch = ((zoomLevel-15)*((60-30)/(20-15))+30);
+            var newPitch = ((zoomLevel-15)*((75-20)/(20-15))+20);
             map.setPitch(newPitch);
-            //console.log("pitchLevel: ", newPitch);
             this.setState({ map });
         });
     }
@@ -196,7 +197,6 @@ export default class Map extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(`new props`, nextProps)
         const { map } = this.state;
         if (!map) {
             return null;
@@ -300,7 +300,7 @@ Map.defaultProps = {
     bearing: 0,
     scrollZoom: true,
     movingMethod: "flyTo",
-    pitch: 60,
+    pitch: 75,
     style: 'mapbox://styles/boriskenli/cit9v0ctt001u2hp3tp148ccr',
     accessToken: 'pk.eyJ1IjoiYm9yaXNrZW5saSIsImEiOiJjaXQzeHZudWYwMDNjMnNsZXBmN29nbHlsIn0.kdE7_5U86Vf4gnAIYvQ3zg',
     // onStyleLoad: function (map) {
