@@ -8,6 +8,10 @@ if (Meteor.isServer) {
     Meteor.publish('jewels', function jewelsPublication() {
         return Jewels.find();
     });
+
+    Meteor.publish('myjewels', function myJewelsPublication() {
+        return Jewels.find({userId: this.userId});
+    });
 }
 
 Meteor.methods({
