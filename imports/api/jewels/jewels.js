@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 
 const Jewels = new Mongo.Collection('jewels');
 
@@ -32,17 +33,17 @@ Meteor.methods({
     //         username: Meteor.users.findOne(this.userId).username,
     //     });
     // },
-    // 'jewels.remove'(jewelId) {
-    //     check(jewelId, String);
+    'jewels.remove'(jewelId) {
+        check(jewelId, String);
 
-    //     const jewel = Jewels.findOne(jewelId);
-    //     if (jewel.private && jewel.owner !== this.userId) {
-    //         // If the jewel is private, make sure only the owner can delete it
-    //         throw new Meteor.Error('not-authorized');
-    //     }
+        const jewel = Jewels.findOne(jewelId);
+        if (jewel.userId !== this.userId) {
+            // Only the owner can delete the jewel
+            throw new Meteor.Error('not-authorized');
+        }
 
-    //     Jewels.remove(jewelId);
-    // },
+        Jewels.remove(jewelId);
+    },
     // 'jewels.setChecked'(jewelId, setChecked) {
     //     check(jewelId, String);
     //     check(setChecked, Boolean);

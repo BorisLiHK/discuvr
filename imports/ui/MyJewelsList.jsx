@@ -1,14 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import { Meteor } from 'meteor/meteor'
 import { createContainer } from 'meteor/react-meteor-data'
-import {List, ListItem} from 'material-ui/List';
-
-import Paper from 'material-ui/Paper';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton'
 
 import Jewels from '../api/jewels'
 import Jewel from './Jewel'
 
-class MyJewelList extends Component {
+class MyJewelsList extends Component {
     constructor(props) {
         super(props)
     }
@@ -24,18 +23,23 @@ class MyJewelList extends Component {
     }
     render() {
         return (
-            <div className="jewel_list">
+            <div>
                 <h1>My Jewels</h1>
                 <h2>Sorted by Creation Date</h2>
-                <div>
+                <div className="jewel_cards">
                     {this.renderJewels()}
                 </div>
+                <RaisedButton
+                    label='Back to Map'
+                    secondary={true}
+                    href="/"
+                />
             </div>
         )
     }
 }
 
-MyJewelList.PropTypes = {
+MyJewelsList.PropTypes = {
     jewels: PropTypes.array,
     currentUser: PropTypes.object.isRequired
 };
@@ -48,4 +52,4 @@ export default createContainer(() => {
         jewels: Jewels.find({}, {sort: {createdAt : -1}}).fetch(),
         currentUser: Meteor.user()
     };
-}, MyJewelList);
+}, MyJewelsList);
