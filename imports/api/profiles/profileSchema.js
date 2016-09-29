@@ -14,6 +14,7 @@ SimpleSchema.extendOptions({
 Profiles.attachSchema({
     userId:{
         type:String,
+        unique:true,
         autoValue:function(){
             return this.userId
         },
