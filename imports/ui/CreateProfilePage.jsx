@@ -4,7 +4,7 @@ import {Form} from 'simple-react-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import {browserHistory} from 'react-router';
 
-import Profiles from '../api/profiles'
+import Profiles from '../api/profiles';
 
 export default class CreateProfilePage extends Component {
     handleSubmit(event) {

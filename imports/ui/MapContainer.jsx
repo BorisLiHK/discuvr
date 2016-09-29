@@ -77,7 +77,6 @@ class MapContainer extends Component {
                         source="jewelsLayer"
                         layout={{
                             'icon-image': '{icon}',
-                            //'icon-size': 1.5,
                             'text-field': '{title}',
                             'text-offset': [0, 2],
                             'text-size': 10,
