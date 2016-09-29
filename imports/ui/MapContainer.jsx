@@ -12,9 +12,6 @@ import AccountsUIWrapper from './AccountsUIWrapper';
 import Jewels from '../api/jewels';
 import Circles from '../api/circles';
 import Profiles from '../api/profiles';
-import AccountsUIWrapper from './AccountsUIWrapper'
-import Jewels from '../api/jewels'
-import Circles from '../api/circles'
 import AppIconMenu from './IconMenu'
 
 class MapContainer extends Component {
