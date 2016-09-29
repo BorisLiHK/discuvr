@@ -191,7 +191,7 @@ export default class Map extends Component {
                 return start+change*(tc*ts + -3*ts*ts + 3*tc);
             }
 
-            let newPitch = getNewPitch()
+            let newPitch = Math.round(getNewPitch())
 
             // console.log(newPitch())
 
