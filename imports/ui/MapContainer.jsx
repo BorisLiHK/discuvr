@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { Meteor } from 'meteor/meteor';
-import { createContainer } from 'meteor/react-meteor-data';
+import React, {Component, PropTypes} from 'react';
+import {Meteor} from 'meteor/meteor';
+import {createContainer} from 'meteor/react-meteor-data';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import JewelIcon from 'material-ui/svg-icons/maps/add-location';
 import ProfileIcon from 'material-ui/svg-icons/social/person';
@@ -11,7 +11,6 @@ import Feature from "./Feature";
 import AccountsUIWrapper from './AccountsUIWrapper';
 import Jewels from '../api/jewels';
 import Circles from '../api/circles';
-import Profiles from '../api/profiles';
 import AppIconMenu from './IconMenu'
 
 class MapContainer extends Component {
@@ -22,38 +21,10 @@ class MapContainer extends Component {
             mapCenter: this.getCenter()
         }
     }
-    //test code to update location via setInterval() 
-    /*updateCenter(){
-        console.log("updateCenter() called");
-        navigator.geolocation.getCurrentPosition((pos)=>{
-            this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude]});
-        });
-        console.log(this.state.mapCenter);
-    }*/
 
-    getJewelData() {
-        return {
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "properties": {
-                    // "title": "Mapbox UTS",
-                    "description": "This is a test description",
-                    "icon": "jewel_default"
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        151.1994834,
-                        -33.8840109
-                    ]
-                }
-            }]
-        }
-    }
     //use callback so that the function to update center get called once position is updated
     getCenter(callback) {
-        var position = [151.199,-33.884];
+        var position = [151.199, -33.884];
         var onSuccess = (pos) => {
             position = [pos.coords.longitude, pos.coords.latitude];
 
@@ -69,18 +40,18 @@ class MapContainer extends Component {
         navigator.geolocation.getCurrentPosition(onSuccess, onFail);
     }
 
-    _onToggleHover(cursor, { map }) {
+    _onToggleHover(cursor, {map}) {
         map.getCanvas().style.cursor = cursor;
     }
 
-    componentDidMount(){
-        const that=this;
-        window.setInterval(() => { 
+    componentDidMount() {
+        const that = this;
+        window.setInterval(() => {
             that.getCenter((pos) => {
                 that.setState({mapCenter: pos})
-                console.log("newMapCenter: ", that.state.mapCenter);
+
             })
-        },3000);
+        }, 3000);
     }
 
     render() {
@@ -103,28 +74,28 @@ class MapContainer extends Component {
                     >
 
 
-                    {
-                        this.props.jewels.map((jewel, index) => (
+                        {
+                            this.props.jewels.map((jewel, index) => (
 
-                            <Feature
-                                key={jewel._id}
-                                id={jewel.id}
-                                title={jewel.title}
-                                coordinates={[
-                                    jewel.coordinates.longitude,
-                                    jewel.coordinates.latitude
-                                ]}
-                            />
-                        ))
-                        
-                    } 
+                                <Feature
+                                    key={jewel._id}
+                                    id={jewel.id}
+                                    title={jewel.title}
+                                    coordinates={[
+                                        jewel.coordinates.longitude,
+                                        jewel.coordinates.latitude
+                                    ]}
+                                />
+                            ))
+
+                        }
                     </Layer>
                 </Map>
                 <AccountsUIWrapper />
                 <FloatingActionButton href="create-profile" style={{
-                    position:"fixed",
-                    right:20,
-                    top:20,
+                    position: "fixed",
+                    right: 20,
+                    top: 20,
                 }}>
                     <ProfileIcon/>
                 </FloatingActionButton>
@@ -136,7 +107,7 @@ class MapContainer extends Component {
                 }}>
                     <JewelIcon/>
                 </FloatingActionButton>
-                
+
             </div>
         );
     }
@@ -144,18 +115,15 @@ class MapContainer extends Component {
 
 MapContainer.PropTypes = {
     jewels: PropTypes.array.isRequired,
-    circles: PropTypes.array.isRequred, 
-    profiles: PropTypes.array.isRequired,
+    circles: PropTypes.array.isRequred,
 };
 
 export default createContainer(() => {
     Meteor.subscribe('jewels');
     Meteor.subscribe('circles');
-    Meteor.subscribe('profiles');
 
     return {
         jewels: Jewels.find().fetch(),
         circles: Circles.find().fetch(),
-        profiles: Profiles.find().fetch(),
-    };
+    }
 }, MapContainer);

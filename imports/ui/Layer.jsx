@@ -1,8 +1,5 @@
-import mapboxgl from "mapbox-gl/dist/mapbox-gl";
 import React, { Component, PropTypes, cloneElement, Children } from "react";
-import isEqual from "deep-equal";
 
-import { diff } from "../api/helper";
 import Feature from "./Feature";
 
 let index = 0;
