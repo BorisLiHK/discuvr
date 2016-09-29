@@ -27,7 +27,8 @@ class AppIconMenu extends Component {
             href="my-jewels"
           />
           <MenuItem
-            primaryText="My Circles (no link)"
+            primaryText="My Circles"
+            href="my-circles"
           />
         </IconMenu>
       </div>
