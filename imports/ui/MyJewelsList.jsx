@@ -5,7 +5,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import RaisedButton from 'material-ui/RaisedButton'
 
 import Jewels from '../api/jewels'
-import Jewel from './Jewel'
+import JewelCard from './JewelCard'
 
 class MyJewelsList extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class MyJewelsList extends Component {
     renderJewels() {
         return this.props.jewels.map((jewel) => {
             return (
-                <Jewel
+                <JewelCard
                     key={jewel._id}
                     jewel={jewel}
                 />
