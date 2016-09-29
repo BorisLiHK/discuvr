@@ -1,4 +1,9 @@
+import { Meteor } from 'meteor/meteor';
 import reduce from "reduce-object";
+
+if (Meteor.isServer) {
+
+}
 
 function find(obj, predicate) {
     let res;
