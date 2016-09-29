@@ -46,10 +46,8 @@ AddFriendPage.PropTypes = {
 
 export default createContainer(() => {
     Meteor.subscribe('userList');
-    console.log(Meteor.users.find({}))
-
 
     return {
-        strangers: Meteor.users.find({}),
+        strangers: Meteor.users.find({}).fetch(),
     };
 }, AddFriendPage)
