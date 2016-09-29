@@ -174,19 +174,23 @@ export default class Map extends Component {
             if (onZoom) {
                 onZoom(map, ...args);
             }
-            const MIN_ZOOM = 14.5,
+            var MIN_ZOOM = 16;
+            const //MIN_ZOOM = 14.5,
                 MAX_ZOOM = 20,
                 MIN_PITCH = 0,
                 MAX_PITCH = 60
 
             var zoom = map.getZoom();
+            if(zoom < MIN_ZOOM)
+                MIN_ZOOM = zoom;
+
             var newPitch =
                 (zoom - MIN_ZOOM) *
                 (MAX_PITCH-MIN_PITCH) / (MAX_ZOOM-MIN_ZOOM) +
                 MIN_PITCH
-            console.log(newPitch, zoom)
+            console.log("Pitch: " + newPitch + " Zoom: " + zoom)
+            console.log("MIN_ZOOM: " + MIN_ZOOM)
             map.setPitch(newPitch);
-            // this.setState({ map });
         });
     }
 
