@@ -25,24 +25,6 @@ export default class Map extends Component {
             [(center[0] + 0.007), (center[1] + 0.007)]
         ]
     }
-    //test code to add avatar as a feature
-    /*getCurrentLocation(){
-        navigator.geolocation.getCurrentPosition((pos)=>{
-            return{
-                "type":"Feature",
-                "properties":{
-                    "icon":"User"
-                },
-                "geometry":{
-                    "type":"point",
-                    "coordinates":[
-                        pos.cords.longitude,
-                        pos.cords.latitude
-                    ]
-                }
-            }
-        })
-    }*/
 
     componentWillMount() {
 
@@ -208,16 +190,6 @@ export default class Map extends Component {
             console.log("Pitch: " + newPitch + " Zoom: " + zoom)
             map.setPitch(newPitch);
         });
-        //update location of user avatar on the map every 2s
-        /*map.on("load",function(){
-            window.setInterval(function(){
-                var onSuccess=function(pos){
-                    map.flyTo({center: [pos.coords.longitude, pos.coords.latitude]})
-                    console.log("Location updated"+pos)
-                }
-                navigator.geolocation.getCurrentPosition(onSuccess)
-            },5000);
-        });*/
     }
 
     componentWillUnmount() {
