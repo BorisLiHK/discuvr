@@ -12,6 +12,10 @@ import AccountsUIWrapper from './AccountsUIWrapper';
 import Jewels from '../api/jewels';
 import Circles from '../api/circles';
 import Profiles from '../api/profiles';
+import AccountsUIWrapper from './AccountsUIWrapper'
+import Jewels from '../api/jewels'
+import Circles from '../api/circles'
+import AppIconMenu from './IconMenu'
 
 class MapContainer extends Component {
     constructor(props) {
@@ -110,7 +114,6 @@ class MapContainer extends Component {
                     </Layer>
                 </Map>
                 <AccountsUIWrapper />
-
                 <FloatingActionButton href="create-profile" style={{
                     position:"fixed",
                     right:20,
@@ -118,7 +121,7 @@ class MapContainer extends Component {
                 }}>
                     <ProfileIcon/>
                 </FloatingActionButton>
-                
+                <AppIconMenu />
                 <FloatingActionButton href="create-jewel" style={{
                     position: "fixed",
                     right: 20,
