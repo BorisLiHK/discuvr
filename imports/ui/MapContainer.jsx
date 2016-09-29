@@ -120,7 +120,7 @@ class MapContainer extends Component {
                     } 
                     </Layer>
                 </Map>
-                <AccountsUIWrapper />
+                
                 <FloatingActionButton href="create-profile" style={{
                     position:"fixed",
                     right:20,
