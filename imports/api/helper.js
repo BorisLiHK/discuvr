@@ -2,7 +2,9 @@ import { Meteor } from 'meteor/meteor';
 import reduce from "reduce-object";
 
 if (Meteor.isServer) {
-
+    Meteor.publish("userList", function () {
+        return Meteor.users.find({}, {fields: {_id: 1, username: 1}});
+    });
 }
 
 function find(obj, predicate) {

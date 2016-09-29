@@ -12,7 +12,8 @@ import CreateCirclePage from '../../ui/CreateCirclePage'
 import CreateProfilePage from '../../ui/CreateProfilePage'
 import ViewJewelPage from '../../ui/ViewJewelPage';
 import AddFriendPage from '../../ui/AddFriendPage';
-import MyJewelsList from '../../ui/MyJewelsList'
+import MyJewelsList from '../../ui/MyJewelsList';
+import MyCirclesList from '../../ui/MyCirclesList';
 
 function redirectToMap(nextState, replace) {
     if (Meteor.userId()) {
