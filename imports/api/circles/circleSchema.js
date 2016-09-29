@@ -3,9 +3,12 @@ import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import Text from 'simple-react-form-material-ui/lib/text';
 import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object';
-import Textarea from 'simple-react-form-material-ui/lib/textarea'
+import Textarea from 'simple-react-form-material-ui/lib/textarea';
+import SelectWithMethod from 'simple-react-form-material-ui/lib/select-with-method';
 
 import Circles from './circles'
+
+
 
 SimpleSchema.extendOptions({
   srf: Match.Optional(Object)
@@ -37,12 +40,13 @@ Circles.attachSchema({
             type: Text
         }
     },
-    // members: {
-    //     type: [String],
-    //     srf: {
-            
-    //     }
-    // },
+    members: {
+        type: [String],
+        srf: {
+            multi: true,
+            type: SelectWithMethod
+        }
+    },
 });
 
 export default Circles;

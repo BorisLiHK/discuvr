@@ -4,44 +4,42 @@ import {Form} from 'simple-react-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import {browserHistory} from 'react-router';
 
-import Circles from '../api/circles';
+import Profiles from '../api/profiles';
 
-export default class CreateCirclePage extends Component {
+export default class CreateProfilePage extends Component {
     handleSubmit(event) {
         Console.log(this);
     }
     render() {
         return (
             <div>
-                <h1>Create a New Circle</h1>
+                <h1>Tell Us About You</h1>
                 <Form
-                    collection={Circles}
+                    collection={Profiles}
                     type='insert'
                     ref='form'
-                    inSuccess={()=>
+                    onSuccess={()=>
                         browserHistory.push('/')
                     }
                     logErrors
                 />
                 <div style={{marginTop: 20}}>
-                    <RaisedButton label='Create' primary={true} onTouchTap={() => this.refs.form.submit()} style={{
-                        position: 'fixed',
-                        left: 20,
-                    }}/>
-                    <RaisedButton label='Cancel' secondary={true} href="/my-circles" style={{
-                        position: 'fixed',
-                        right: 20,
-                    }} />
                 </div>
                 <RaisedButton 
-                    primary label='Create'
+                    primary label='Save' 
                     onTouchTap={() => this.refs.form.submit()}
-                    style={{position:"fixed",left:20,}}
+                    style={{
+                        position:"fixed",
+                        left:20,
+                    }}
                 />
                 <RaisedButton
-                    secondary label='Cancel'
+                    secondary label='Later'
                     href="/"
-                    style={{position:"fixed",right:20,}}
+                    style={{
+                        position:"fixed",
+                        right:20,
+                    }}
                 />
             </div>
         );

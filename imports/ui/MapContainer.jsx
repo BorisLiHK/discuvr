@@ -2,15 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import JewelIcon from 'material-ui/svg-icons/maps/add-location';
 
 import Map from './Map';
 import Layer from './Layer'
 import Feature from "./Feature";
-import AccountsUIWrapper from './AccountsUIWrapper'
-import Jewels from '../api/jewels'
-import Circles from '../api/circles'
 import AppIconMenu from './IconMenu'
+import AccountsUIWrapper from './AccountsUIWrapper';
+import Jewels from '../api/jewels';
+import Circles from '../api/circles';
+import Profiles from '../api/profiles';
 
 class MapContainer extends Component {
     constructor(props) {
@@ -19,17 +20,18 @@ class MapContainer extends Component {
         this.state = {
             mapCenter: this.getCenter()
         }
-
-        navigator.geolocation.getCurrentPosition((pos) => {
-            this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude] })
+        navigator.geolocation.getCurrentPosition((pos)=>{
+            this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude]});
         });
     }
-
-    getCurrentLocation() {
-        navigator.geolocation.getCurrentPosition((pos) => {
-            return [pos.coords.longitude, pos.coords.latitude]
-        })
-    }
+    //test code to update location via setInterval() 
+    /*updateCenter(){
+        console.log("updateCenter() called");
+        navigator.geolocation.getCurrentPosition((pos)=>{
+            this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude]});
+        });
+        console.log(this.state.mapCenter);
+    }*/
 
     getJewelData() {
         return {
@@ -61,18 +63,20 @@ class MapContainer extends Component {
         map.getCanvas().style.cursor = cursor;
     }
 
+    componentDidMount(){
+    }
+
     render() {
+        console.log(this.props.profiles.length);
         return (
             <div className="super_class">
-                <Map
-                    center={this.state.mapCenter}>
+                <Map center={this.state.mapCenter}>
                     <Layer
                         id="jewelsLayer"
                         type="symbol"
                         source="jewelsLayer"
                         layout={{
                             'icon-image': '{icon}',
-                            //'icon-size': 1.5,
                             'text-field': '{title}',
                             'text-offset': [0, 2],
                             'text-size': 10,
@@ -80,6 +84,7 @@ class MapContainer extends Component {
                             'icon-allow-overlap': true
                         }}
                     >
+
 
                     {
                         this.props.jewels.map((jewel, index) => (
@@ -98,16 +103,16 @@ class MapContainer extends Component {
                     } 
                     </Layer>
                 </Map>
+                
                 <AccountsUIWrapper />
-
                 <AppIconMenu />
                 
                 <FloatingActionButton href="create-jewel" style={{
                     position: "fixed",
                     right: 20,
-                    bottom: 20
+                    bottom: 20,
                 }}>
-                    <ContentAdd />
+                    <JewelIcon/>
                 </FloatingActionButton>
             </div>
         );
@@ -116,15 +121,18 @@ class MapContainer extends Component {
 
 MapContainer.PropTypes = {
     jewels: PropTypes.array.isRequired,
-    circles: PropTypes.array.isRequred
+    circles: PropTypes.array.isRequred, 
+    profiles: PropTypes.array.isRequired,
 };
 
 export default createContainer(() => {
     Meteor.subscribe('jewels');
     Meteor.subscribe('circles');
+    Meteor.subscribe('profiles');
 
     return {
         jewels: Jewels.find().fetch(),
-        circles: Circles.find().fetch()
+        circles: Circles.find().fetch(),
+        profiles: Profiles.find().fetch(),
     };
 }, MapContainer);

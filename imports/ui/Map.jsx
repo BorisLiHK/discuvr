@@ -25,6 +25,24 @@ export default class Map extends Component {
             [(center[0] + 0.007), (center[1] + 0.007)]
         ]
     }
+    //test code to add avatar as a feature
+    /*getCurrentLocation(){
+        navigator.geolocation.getCurrentPosition((pos)=>{
+            return{
+                "type":"Feature",
+                "properties":{
+                    "icon":"User"
+                },
+                "geometry":{
+                    "type":"point",
+                    "coordinates":[
+                        pos.cords.longitude,
+                        pos.cords.latitude
+                    ]
+                }
+            }
+        })
+    }*/
 
     componentWillMount() {
 
@@ -192,6 +210,16 @@ export default class Map extends Component {
             console.log("MIN_ZOOM: " + MIN_ZOOM)
             map.setPitch(newPitch);
         });
+        //update location of user avatar on the map every 2s
+        /*map.on("load",function(){
+            window.setInterval(function(){
+                var onSuccess=function(pos){
+                    map.flyTo({center: [pos.coords.longitude, pos.coords.latitude]})
+                    console.log("Location updated"+pos)
+                }
+                navigator.geolocation.getCurrentPosition(onSuccess)
+            },5000);
+        });*/
     }
 
     componentWillUnmount() {
@@ -297,7 +325,8 @@ Map.propTypes = {
         "jumpTo",
         "easeTo",
         "flyTo"
-    ])
+    ]),
+    //showsUserLocation:PropTypes.bool
 };
 
 Map.defaultProps = {
@@ -312,8 +341,9 @@ Map.defaultProps = {
     maxZoom: 20,
     bearing: 0,
     scrollZoom: true,
-    movingMethod: "easeTo",
-    pitch: 75,
+    movingMethod: "flyTo",
+    //showsUserLocation:true,
+    pitch: 60,
     style: 'mapbox://styles/boriskenli/cit9v0ctt001u2hp3tp148ccr',
     accessToken: 'pk.eyJ1IjoiYm9yaXNrZW5saSIsImEiOiJjaXQzeHZudWYwMDNjMnNsZXBmN29nbHlsIn0.kdE7_5U86Vf4gnAIYvQ3zg',
     // onStyleLoad: function (map) {

@@ -20,7 +20,8 @@ class AppIconMenu extends Component {
           targetOrigin={{horizontal: 'right', vertical: 'top'}}
         >
           <MenuItem
-            primaryText="My Profile (no link)"
+            primaryText="My Profile"
+            href='create-profile'
           />
           <MenuItem
             primaryText="My Jewels"
