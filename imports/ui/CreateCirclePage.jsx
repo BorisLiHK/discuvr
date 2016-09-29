@@ -23,6 +23,16 @@ export default class CreateCirclePage extends Component {
                     }
                     logErrors
                 />
+                <div style={{marginTop: 20}}>
+                    <RaisedButton label='Create' primary={true} onTouchTap={() => this.refs.form.submit()} style={{
+                        position: 'fixed',
+                        left: 20,
+                    }}/>
+                    <RaisedButton label='Cancel' secondary={true} href="/my-circles" style={{
+                        position: 'fixed',
+                        right: 20,
+                    }} />
+                </div>
                 <RaisedButton 
                     primary label='Create'
                     onTouchTap={() => this.refs.form.submit()}

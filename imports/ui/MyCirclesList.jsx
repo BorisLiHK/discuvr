@@ -4,19 +4,19 @@ import { createContainer } from 'meteor/react-meteor-data'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton'
 
-import Jewels from '../api/jewels'
-import Jewel from './Jewel'
+import Circles from '../api/circles'
+import Circle from './Circle'
 
-class MyJewelsList extends Component {
+class MyCirclesList extends Component {
     constructor(props) {
         super(props)
     }
-    renderJewels() {
-        return this.props.jewels.map((jewel) => {
+    renderCircles() {
+        return this.props.circles.map((circle) => {
             return (
-                <Jewel
-                    key={jewel._id}
-                    jewel={jewel}
+                <Circle
+                    key={circle._id}
+                    circle={circle}
                 />
             )
         })
@@ -24,38 +24,47 @@ class MyJewelsList extends Component {
     render() {
         return (
             <div>
-                <h1>My Jewels</h1>
+                <h1>My Circles</h1>
                 <h2>Sorted by Creation Date</h2>
-                <div className="jewel_cards">
-                    {this.renderJewels()}
+                <div className="circles_cards">
+                    {this.renderCircles()}
                 </div>
                 <div style={{marginTop: 20}}>
+                    <RaisedButton
+                        label='Create Circle'
+                        primary={true}
+                        href="/create-circle"
+                        style={{
+                            position: 'fixed',
+                            left: 20,
+                        }}
+                    />
                     <RaisedButton
                         label='Back to Map'
                         secondary={true}
                         href="/"
                         style={{
                             position: 'fixed',
-                            right: 20,
-                    }}/>
-
+                            right: 20, 
+                        }}
+                    />
                 </div>
             </div>
         )
     }
 }
 
-MyJewelsList.PropTypes = {
-    jewels: PropTypes.array,
+MyCirclesList.PropTypes = {
+    circles: PropTypes.array,
     currentUser: PropTypes.object.isRequired
 };
 
 //fetch by createdAt date or do the sort later?
 export default createContainer(() => {
-    Meteor.subscribe('myjewels');
+    Meteor.subscribe('mycircles');
 
     return {
-        jewels: Jewels.find({}, {sort: {createdAt : -1}}).fetch(),
+        circles: Circles.find({}, {sort: {createdAt : -1}}).fetch(),
         currentUser: Meteor.user()
     };
-}, MyJewelsList);
+}, MyCirclesList);

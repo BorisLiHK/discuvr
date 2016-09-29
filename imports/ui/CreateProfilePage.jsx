@@ -23,15 +23,23 @@ export default class CreateProfilePage extends Component {
                     }
                     logErrors
                 />
+                <div style={{marginTop: 20}}>
+                </div>
                 <RaisedButton 
                     primary label='Save' 
                     onTouchTap={() => this.refs.form.submit()}
-                    style={{position:"fixed",left:20,}}
+                    style={{
+                        position:"fixed",
+                        left:20,
+                    }}
                 />
                 <RaisedButton
                     secondary label='Later'
                     href="/"
-                    style={{position:"fixed",right:20,}}
+                    style={{
+                        position:"fixed",
+                        right:20,
+                    }}
                 />
             </div>
         );
