@@ -173,6 +173,37 @@ export default class Map extends Component {
             if (onZoom) {
                 onZoom(map, ...args);
             }
+
+            let zoom = map.getZoom();
+            const MIN_ZOOM = 14,
+                MAX_ZOOM = 20,
+                MIN_PITCH = 0,
+                MAX_PITCH = 60
+            let time = zoom - MIN_ZOOM,
+                start = MIN_PITCH,
+                change = MAX_PITCH - MIN_PITCH,
+                duration = MAX_ZOOM - MIN_ZOOM
+
+            let getNewPitch = () => {
+                var ts=(time/=duration)*time;
+                var tc=ts*time;
+                console.log(ts, tc, start+change*(tc*ts + -3*ts*ts + 3*tc))
+                return start+change*(tc*ts + -3*ts*ts + 3*tc);
+            }
+
+            let newPitch = getNewPitch()
+
+            // console.log(newPitch())
+
+            // if(zoom < MIN_ZOOM)
+            //     MIN_ZOOM = zoom;
+
+            // let newPitch =
+            //     (zoom - MIN_ZOOM) *
+            //     (MAX_PITCH-MIN_PITCH) / (MAX_ZOOM-MIN_ZOOM) +
+            //     MIN_PITCH
+            console.log("Pitch: " + Math.min(newPitch, 60) + " Zoom: " + zoom)
+            map.setPitch(Math.min(newPitch, 60));
         });
     }
 
