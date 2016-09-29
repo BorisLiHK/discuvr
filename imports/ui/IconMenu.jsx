@@ -1,10 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import IconMenu from 'material-ui/IconMenu';
+import Avatar from 'material-ui/Avatar';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 
+
+
 class AppIconMenu extends Component {
+
   render() {
     return (
       <div
@@ -15,7 +19,7 @@ class AppIconMenu extends Component {
         }}
       >
         <IconMenu
-          iconButtonElement={<IconButton><NavigationMenu /></IconButton>}
+          iconButtonElement={iconButtonElement={<IconButton><NavigationMenu /></IconButton>}}
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
           targetOrigin={{horizontal: 'right', vertical: 'top'}}
         >
