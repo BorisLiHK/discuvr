@@ -20,9 +20,6 @@ class MapContainer extends Component {
         this.state = {
             mapCenter: this.getCenter()
         }
-        navigator.geolocation.getCurrentPosition((pos)=>{
-            this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude]});
-        });
     }
     //test code to update location via setInterval() 
     /*updateCenter(){
@@ -55,8 +52,11 @@ class MapContainer extends Component {
     }
 
     getCenter() {
-        // here be logic about getting center
-        return [151.2093, -33.8688]
+        //console.log("getCenter() triggered");
+        navigator.geolocation.getCurrentPosition((pos)=>{
+            console.log(pos.coords);
+            return [pos.coords.longitude,pos.coords.latitude];
+        })
     }
 
     _onToggleHover(cursor, { map }) {
@@ -64,10 +64,16 @@ class MapContainer extends Component {
     }
 
     componentDidMount(){
+        let that=this;
+        window.setInterval(function(){
+            //console.log("setInterval() triggered");
+            that.setState({mapCenter: that.getCenter()});
+        },3000);
     }
 
     render() {
-        console.log(this.props.profiles.length);
+        //console.log(this.props.profiles.length);
+        console.log("state updated");
         return (
             <div className="super_class">
                 <Map center={this.state.mapCenter}>
