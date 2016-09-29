@@ -51,13 +51,22 @@ class MapContainer extends Component {
             }]
         }
     }
+    //use callback so that the function to update center get called once position is updated
+    getCenter(callback) {
+        var position = [151.199,-33.884];
+        var onSuccess = (pos) => {
+            position = [pos.coords.longitude, pos.coords.latitude];
 
-    getCenter() {
-        //console.log("getCenter() triggered");
-        navigator.geolocation.getCurrentPosition((pos)=>{
-            console.log(pos.coords);
-            return [pos.coords.longitude,pos.coords.latitude];
-        })
+            if (callback && typeof callback === 'function')
+                callback(position)
+            else return position
+        }
+        let onFail = (pos) => {
+            if (callback && typeof callback === 'function')
+                callback(position)
+            else return position
+        }
+        navigator.geolocation.getCurrentPosition(onSuccess, onFail);
     }
 
     _onToggleHover(cursor, { map }) {
@@ -65,17 +74,17 @@ class MapContainer extends Component {
     }
 
     componentDidMount(){
-        let that=this;
-        window.setInterval(function(){
-            //console.log("setInterval() triggered");
-            that.setState({mapCenter: that.getCenter()});
-            console.log(that.state.mapCenter);
+        const that=this;
+        window.setInterval(() => { 
+            that.getCenter((pos) => {
+                that.setState({mapCenter: pos})
+                console.log("newMapCenter: ", that.state.mapCenter);
+            })
         },3000);
     }
 
     render() {
         //console.log(this.props.profiles.length);
-        //console.log(this.state.mapCenter);
         return (
             <div className="super_class">
                 <Map center={this.state.mapCenter}>
@@ -127,6 +136,7 @@ class MapContainer extends Component {
                 }}>
                     <JewelIcon/>
                 </FloatingActionButton>
+                
             </div>
         );
     }
