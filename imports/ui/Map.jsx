@@ -341,7 +341,7 @@ Map.defaultProps = {
     maxZoom: 20,
     bearing: 0,
     scrollZoom: true,
-    movingMethod: "flyTo",
+    movingMethod: "easeTo",
     //showsUserLocation:true,
     pitch: 60,
     style: 'mapbox://styles/boriskenli/cit9v0ctt001u2hp3tp148ccr',
