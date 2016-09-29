@@ -263,6 +263,7 @@ export default class Map extends Component {
         )
 
         if (didZoomUpdate || didCenterUpdate || didBearingUpdate) {
+        	console.log("map updated");
             map[this.props.movingMethod]({
                 zoom: didZoomUpdate ? nextProps.zoom[0] : zoom,
                 center: didCenterUpdate ? nextProps.center : center,
@@ -341,7 +342,7 @@ Map.defaultProps = {
     maxZoom: 20,
     bearing: 0,
     scrollZoom: true,
-    movingMethod: "flyTo",
+    movingMethod: "easeTo",
     //showsUserLocation:true,
     pitch: 60,
     style: 'mapbox://styles/boriskenli/cit9v0ctt001u2hp3tp148ccr',

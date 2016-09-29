@@ -69,12 +69,13 @@ class MapContainer extends Component {
         window.setInterval(function(){
             //console.log("setInterval() triggered");
             that.setState({mapCenter: that.getCenter()});
+            console.log(that.state.mapCenter);
         },3000);
     }
 
     render() {
         //console.log(this.props.profiles.length);
-        console.log("state updated");
+        //console.log(this.state.mapCenter);
         return (
             <div className="super_class">
                 <Map center={this.state.mapCenter}>
