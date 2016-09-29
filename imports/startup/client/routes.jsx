@@ -66,3 +66,15 @@ export const renderRoutes = () => (
     </Router>
 );
 
+Accounts.onLogin( () => {
+    if (Meteor.isClient){
+        var path = location.pathname;
+
+        if(path !== '/login'){
+            return       
+        }
+        browserHistory.push('/')
+    
+    }
+});
+
