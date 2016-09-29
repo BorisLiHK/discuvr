@@ -3,15 +3,16 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import JewelIcon from 'material-ui/svg-icons/maps/add-location';
+import ProfileIcon from 'material-ui/svg-icons/social/person';
 
 import Map from './Map';
 import Layer from './Layer'
 import Feature from "./Feature";
-import AppIconMenu from './IconMenu'
 import AccountsUIWrapper from './AccountsUIWrapper';
 import Jewels from '../api/jewels';
 import Circles from '../api/circles';
 import Profiles from '../api/profiles';
+import AppIconMenu from './IconMenu'
 
 class MapContainer extends Component {
     constructor(props) {
@@ -20,9 +21,6 @@ class MapContainer extends Component {
         this.state = {
             mapCenter: this.getCenter()
         }
-        navigator.geolocation.getCurrentPosition((pos)=>{
-            this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude]});
-        });
     }
     //test code to update location via setInterval() 
     /*updateCenter(){
@@ -53,10 +51,22 @@ class MapContainer extends Component {
             }]
         }
     }
+    //use callback so that the function to update center get called once position is updated
+    getCenter(callback) {
+        var position = [151.199,-33.884];
+        var onSuccess = (pos) => {
+            position = [pos.coords.longitude, pos.coords.latitude];
 
-    getCenter() {
-        // here be logic about getting center
-        return [151.2093, -33.8688]
+            if (callback && typeof callback === 'function')
+                callback(position)
+            else return position
+        }
+        let onFail = (pos) => {
+            if (callback && typeof callback === 'function')
+                callback(position)
+            else return position
+        }
+        navigator.geolocation.getCurrentPosition(onSuccess, onFail);
     }
 
     _onToggleHover(cursor, { map }) {
@@ -64,10 +74,17 @@ class MapContainer extends Component {
     }
 
     componentDidMount(){
+        const that=this;
+        window.setInterval(() => { 
+            that.getCenter((pos) => {
+                that.setState({mapCenter: pos})
+                console.log("newMapCenter: ", that.state.mapCenter);
+            })
+        },3000);
     }
 
     render() {
-        console.log(this.props.profiles.length);
+        //console.log(this.props.profiles.length);
         return (
             <div className="super_class">
                 <Map center={this.state.mapCenter}>
@@ -103,10 +120,15 @@ class MapContainer extends Component {
                     } 
                     </Layer>
                 </Map>
-                
                 <AccountsUIWrapper />
+                <FloatingActionButton href="create-profile" style={{
+                    position:"fixed",
+                    right:20,
+                    top:20,
+                }}>
+                    <ProfileIcon/>
+                </FloatingActionButton>
                 <AppIconMenu />
-                
                 <FloatingActionButton href="create-jewel" style={{
                     position: "fixed",
                     right: 20,
@@ -114,6 +136,7 @@ class MapContainer extends Component {
                 }}>
                     <JewelIcon/>
                 </FloatingActionButton>
+                
             </div>
         );
     }
