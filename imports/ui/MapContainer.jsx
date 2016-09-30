@@ -45,13 +45,17 @@ class MapContainer extends Component {
     }
 
     componentDidMount() {
-        const that = this;
-        window.setInterval(() => {
-            that.getCenter((pos) => {
-                that.setState({mapCenter: pos})
+        // const that = this;
+        this.getCenterInterval = setInterval(() => {
+            this.getCenter((pos) => {
+                this.setState({mapCenter: pos})
 
             })
         }, 3000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.getCenterInterval)
     }
 
     render() {
