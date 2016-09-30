@@ -56,7 +56,6 @@ export const renderRoutes = () => (
     <Router history={browserHistory}>
         <Route path="/" component={App} >
             <IndexRoute component={MapContainer} onEnter={redirectToLogin} />
-            {/*<Route path="history" component={History} onEnter={redirectToLogin} />*/}
             <Route path="login" component={LoginPage} onEnter={redirectToMap} />
             <Route path="profile" component={Profile} onEnter={redirectToProfile} />
             <Route path="create-jewel" component={CreateJewelPage} />
@@ -69,16 +68,4 @@ export const renderRoutes = () => (
         </Route>
     </Router>
 );
-
-Accounts.onLogin( () => {
-    if (Meteor.isClient){
-        var path = location.pathname;
-
-        if(path !== '/login'){
-            return       
-        }
-        browserHistory.push('/')
-    
-    }
-});
 

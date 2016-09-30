@@ -91,7 +91,7 @@ class MapContainer extends Component {
                         }
                     </Layer>
                 </Map>
-                <AccountsUIWrapper />
+
                 <FloatingActionButton href="create-profile" style={{
                     position: "fixed",
                     right: 20,
@@ -99,7 +99,9 @@ class MapContainer extends Component {
                 }}>
                     <ProfileIcon/>
                 </FloatingActionButton>
+
                 <AppIconMenu />
+
                 <FloatingActionButton href="create-jewel" style={{
                     position: "fixed",
                     right: 20,
