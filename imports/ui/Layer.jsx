@@ -50,55 +50,19 @@ export default class Layer extends Component {
         return jewelData
     }
 
-    getAvatarData(){
-        let avatarData={
-            "type":"FeatureCollection",
-            "features":[]
-        }
-        avatarData.features.push({
-            "type":"Feature",
-            "properties":{
-                "icon":"User",
-                "title":"user"
-            },
-            "geometry":{
-                "type":"Point",
-                "coordinates":this.props.mapCenter
-            }
-        })
-        return avatarData
-    }
-
     componentWillMount() {
         const { map } = this.context
-        console.log(this.props.source+" will mount");
+        map.addSource(this.props.source, {
+            type: 'geojson',
+            data: this.getJewelData()
+        })
 
-        if(this.props.source=="jewelsLayer"){
-            map.addSource(this.props.source, {
-                type: 'geojson',
-                data: this.getJewelData()
-            })
-
-            map.addLayer({
-                'id': this.props.id,
-                'type': this.props.type,
-                'source': this.props.source,
-                'layout': this.props.layout
-            })
-        }
-        else {
-            map.addSource(this.props.source, {
-                type:'geojson',
-                data:this.getAvatarData()
-            })
-            map.addLayer({
-                'id':this.props.id,
-                'type':this.props.type,
-                'source':this.props.source,
-                'layout':this.props.layout
-            })
-        }
-
+        map.addLayer({
+            'id': this.props.id,
+            'type': this.props.type,
+            'source': this.props.source,
+            'layout': this.props.layout
+        })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -111,10 +75,7 @@ export default class Layer extends Component {
 
     render() {
         const { map } = this.context
-        if(this.props.source=="jewelsLayer")
-            map.getSource(this.props.source).setData(this.getJewelData())
-        else
-            map.getSource(this.props.source).setData(this.getAvatarData())
+        map.getSource(this.props.source).setData(this.getJewelData())
         return null
     }
 
@@ -134,7 +95,6 @@ Layer.propTypes = {
         "circle"
     ]),
 
-    mapCenter: PropTypes.array,
     layout: PropTypes.object,
     paint: PropTypes.object,
     sourceOptions: PropTypes.object,
