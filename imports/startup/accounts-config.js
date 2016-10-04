@@ -6,11 +6,3 @@ Accounts.ui.config({
     onSignedInHook: () => browserHistory.push('/'),
     onSignedOutHook: () => browserHistory.push('login')
 });
-
-if (Meteor.isServer) {
-    Accounts.onCreateUser(function (options, user) {
-        user.profile = options.profile || {};
-        user.roles = {};
-        return user;
-    })
-}

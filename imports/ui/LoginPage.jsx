@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {Accounts} from 'meteor/zetoff:accounts-material-ui';
 
+import LoginForm from './LoginForm'
+
 export default class LoginPage extends Component {
     constructor(props) {
         super(props);
