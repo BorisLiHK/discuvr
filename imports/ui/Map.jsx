@@ -84,40 +84,63 @@ export default class Map extends Component {
             }
             // console.log(`we're here`)
             //
-            // map.addSource('awesome', {
-            //     type: 'geojson',
-            //     data: {}
-            // });
+            /*map.addSource('awesome', {
+                type: 'geojson',
+                data: {}
+            });
             //
-            // map.addLayer({
-            //     'id': 'collection',
-            //     'type': 'symbol',
-            //     'source': 'awesome',
-            //     'layout': {
-            //         'icon-image': '{icon}-15',
-            //         'text-field': '{title}',
-            //         'text-offset': [0, 0.6],
-            //         'text-anchor': 'top'
-            //     }
-            // })
-            //
-            // map.getSource('awesome').setData({
-            //     "type": "FeatureCollection",
-            //     "features": [{
-            //         "type": "Feature",
-            //         "properties": {
-            //             "title": "Mapbox UTS",
-            //             "icon": "harbor"
-            //         },
-            //         "geometry": {
-            //             "type": "Point",
-            //             "coordinates": [
-            //                 151.1994834,
-            //                 -33.8840109
-            //             ]
-            //         }
-            //     }]
-            // })
+            map.addLayer({
+                'id': 'collection',
+                'type': 'symbol',
+                'source': 'awesome',
+                'layout': {
+                    'icon-image': '{icon}-15',
+                    'text-field': '{title}',
+                    'text-offset': [0, 0.6],
+                    'text-anchor': 'top'
+                }
+            })
+            
+            map.getSource('awesome').setData({
+                "type": "FeatureCollection",
+                "features": [{
+                    "type": "Feature",
+                    "properties": {
+                        "title": "User",
+                        "icon": "User"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            151.082020,
+                            -33.9653413
+                        ]
+                    }
+                }]
+            })*/
+            map.addSource("avatar",{
+                "type":"geojson",
+                "data":{
+                    "type":"Feature",
+                    "geometry":{
+                        "type":"Point",
+                        "coordinates":this.props.center
+                    },
+                    "properties":{
+                        "title":"User",
+                        "icon":"User"
+                    }
+                }
+            })
+            map.addLayer({
+                "id":"avatar",
+                "type":"symbol",
+                "source":"avatar",
+                "layout":{
+                    "icon-image":"{icon}",
+                    "text-field":"{title}",
+                }
+            })
 
             this.setState({ map });
         });
@@ -246,6 +269,17 @@ export default class Map extends Component {
                 bearing: didBearingUpdate ? nextProps.bearing : bearing
             });
             map.setMaxBounds(this.getBounds(nextProps.center))
+            map.getSource("avatar").setData({
+                "type":"Feature",
+                "geometry":{
+                    "type":"Point",
+                    "coordinates":nextProps.center
+                },
+                "properties":{
+                    "title":"User",
+                    "icon":"User"
+                }
+            })
         }
 
         if (!isEqual(this.props.style, nextProps.style)) {

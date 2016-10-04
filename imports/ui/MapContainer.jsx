@@ -22,35 +22,7 @@ class MapContainer extends Component {
             mapCenter: this.getCenter()
         }
     }
-    //test code to update location via setInterval() 
-    /*updateCenter(){
-        console.log("updateCenter() called");
-        navigator.geolocation.getCurrentPosition((pos)=>{
-            this.setState({mapCenter: [pos.coords.longitude, pos.coords.latitude]});
-        });
-        console.log(this.state.mapCenter);
-    }*/
 
-    getJewelData() {
-        return {
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "properties": {
-                    // "title": "Mapbox UTS",
-                    "description": "This is a test description",
-                    "icon": "jewel_default"
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        151.1994834,
-                        -33.8840109
-                    ]
-                }
-            }]
-        }
-    }
     //use callback so that the function to update center get called once position is updated
     getCenter(callback) {
         var position = [151.199,-33.884];
@@ -84,7 +56,6 @@ class MapContainer extends Component {
     }
 
     render() {
-        //console.log(this.props.profiles.length);
         return (
             <div className="super_class">
                 <Map center={this.state.mapCenter}>
@@ -119,6 +90,7 @@ class MapContainer extends Component {
                         
                     } 
                     </Layer>
+                    
                 </Map>
                 <AccountsUIWrapper />
                 <FloatingActionButton href="create-profile" style={{
