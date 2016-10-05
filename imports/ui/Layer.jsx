@@ -52,7 +52,6 @@ export default class Layer extends Component {
 
     componentWillMount() {
         const { map } = this.context
-
         map.addSource(this.props.source, {
             type: 'geojson',
             data: this.getJewelData()
@@ -76,7 +75,6 @@ export default class Layer extends Component {
 
     render() {
         const { map } = this.context
-
         map.getSource(this.props.source).setData(this.getJewelData())
         return null
     }
