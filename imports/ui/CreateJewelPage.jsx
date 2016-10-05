@@ -24,6 +24,12 @@ export default class CreateJewelPage extends Component {
                     logErrors
                 />
                 <div style={{marginTop: 20}}>
+                    <RaisedButton label='Use Current Location' primary={true} style={{
+                        position: "fixed",
+                        left: 20,
+                    }} />
+                </div>
+                <div style={{marginTop: 60}}>
                     <RaisedButton label='Create' primary={true} onTouchTap={() => this.refs.form.submit()} style={{
                         position: "fixed",
                         left: 20,
