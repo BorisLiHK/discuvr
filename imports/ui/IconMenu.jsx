@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import reactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
+import {createContainer} from 'meteor/react-meteor-data';
 import IconMenu from 'material-ui/IconMenu';
 import Avatar from 'material-ui/Avatar';
 import MenuItem from 'material-ui/MenuItem';
@@ -34,7 +36,7 @@ class AppIconMenu extends Component {
           leftAvatar={
             <Avatar>H</Avatar>
           }
-          >{Meteor.userId()}
+          >{this.props.currentUser ? <span>{this.props.currentUser.username}</span> : ''}
           </ListItem>
           </List>
           <Divider />
@@ -56,4 +58,14 @@ class AppIconMenu extends Component {
   }
 }
 
-export default AppIconMenu;
+AppIconMenu.PropTypes = {
+  currentUser: PropTypes.object,
+};
+
+export default createContainer(() => {
+  return {
+    currentUser: Meteor.user(),
+  };
+},AppIconMenu);
+
+//export default AppIconMenu;
