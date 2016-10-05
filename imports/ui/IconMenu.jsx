@@ -52,6 +52,10 @@ class AppIconMenu extends Component {
             primaryText="My Circles"
             href="my-circles"
           />
+          <MenuItem
+            primaryText="Logout"
+            href="logout"
+          />
         </IconMenu>
       </div>
     )

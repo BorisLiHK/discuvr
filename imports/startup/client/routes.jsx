@@ -6,6 +6,7 @@ import {Router, IndexRoute, Route, browserHistory} from 'react-router';
 import App from '../../ui/App'
 import MapContainer from '../../ui/MapContainer'
 import LoginPage from '../../ui/LoginPage'
+import LogoutPage from '../../ui/LogoutPage'
 import Profile from '../../ui/Profile'
 import CreateJewelPage from '../../ui/CreateJewelPage'
 import CreateCirclePage from '../../ui/CreateCirclePage'
@@ -30,6 +31,13 @@ function redirectToLogin(nextState, replace) {
             pathname: '/login',
             state: { nextPathname: nextState.location.pathname }
         })
+    }
+}
+
+function loggingOutUser(){
+    if(Meteor.userId())
+    {
+        Meteor.logout();
     }
 }
 
@@ -58,6 +66,7 @@ export const renderRoutes = () => (
             <IndexRoute component={MapContainer} onEnter={redirectToLogin} />
             {/*<Route path="history" component={History} onEnter={redirectToLogin} />*/}
             <Route path="login" component={LoginPage} onEnter={redirectToMap} />
+            <Route path="logout" component={LogoutPage} onEnter={loggingOutUser} />
             <Route path="profile" component={Profile} onEnter={redirectToProfile} />
             <Route path="create-jewel" component={CreateJewelPage} />
             <Route path="my-jewels" component={MyJewelsList} />
