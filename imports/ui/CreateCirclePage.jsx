@@ -18,7 +18,7 @@ export default class CreateCirclePage extends Component {
                     collection={Circles}
                     type='insert'
                     ref='form'
-                    inSuccess={()=>
+                    onSuccess={()=>
                         browserHistory.push('/')
                     }
                     logErrors

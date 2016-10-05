@@ -15,38 +15,40 @@ SimpleSchema.extendOptions({
 });
 
 Circles.attachSchema({
-    userId: {
-        type: String,
-        autoValue: function() {
+    userId:{
+        type:String,
+        autoValue:function(){
             return this.userId
         },
-        srf: {
-            omit: true
-        }
+        srf:{omit:true}
     },
-    createdAt: {
+    createdAt:{
     	type: Date,
-        autoValue: function()  {
+        autoValue:function(){
             return new Date()
         },
-    	srf: {
-            omit: true
-    	}
+    	srf:{omit:true}
     },
-    title: {
-        type: String,
-        max: 100,
-        srf: {
-            type: Text
+    name:{
+        type:String,
+        regEx:/^[A-Za-z]{1,50}$/,
+        max:100,
+        srf:{type:Text},
+    },
+    members:{
+        type:[String],
+        optional:true,
+        srf:{
+            omit:true,
+            multi:true,
+            type:SelectWithMethod,
         }
     },
-    members: {
-        type: [String],
-        srf: {
-            multi: true,
-            type: SelectWithMethod
-        }
-    },
+    "members.userId":{
+        type:String,
+        unique:true,
+        srf:{omit:true}
+    }
 });
 
 export default Circles;

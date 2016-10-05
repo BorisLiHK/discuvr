@@ -204,6 +204,7 @@ export default class Map extends Component {
             if (onZoom) {
                 onZoom(map, ...args);
             }
+            map.setCenter(this.props.center)
             let MIN_ZOOM = 14.5,
                 MAX_ZOOM = 17,
                 MIN_PITCH = 0,
