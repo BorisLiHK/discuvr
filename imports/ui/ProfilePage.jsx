@@ -105,11 +105,11 @@ export default class ProfilePage extends Component {
 }
 
 export default createContainer(() => {
-    Meteor.subscribe('circles');
-    Meteor.subscribe('profiles');
+    Meteor.subscribe('mycircles');
+    Meteor.subscribe('myprofiles');
 
     return {
-        circles: Circles.find({userId:Meteor.userId()}).fetch(),
-        profiles: Profiles.find({userId:Meteor.userId()}).fetch(),
+        circles: Circles.find({}).fetch(),
+        profiles: Profiles.find({}).fetch(),
     };
 }, ProfilePage);

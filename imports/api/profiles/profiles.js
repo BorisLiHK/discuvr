@@ -8,6 +8,9 @@ if (Meteor.isServer) {
     Meteor.publish('profiles', function profilesPublication() {
         return Profiles.find();
     });
+    Meteor.publish('myprofiles',function prfilesPublication(){
+    	return Profiles.find({userId:this.userId});
+    });
 }
 
 Meteor.methods({
