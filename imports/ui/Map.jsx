@@ -128,7 +128,7 @@ export default class Map extends Component {
                         "coordinates":this.props.center
                     },
                     "properties":{
-                        "title":"User",
+                        "title":"",
                         "icon":"User"
                     }
                 }
@@ -278,7 +278,7 @@ export default class Map extends Component {
                     "coordinates":nextProps.center
                 },
                 "properties":{
-                    "title":"User",
+                    "title":"",
                     "icon":"User"
                 }
             })

@@ -28,7 +28,7 @@ Circles.attachSchema({
         },
     	srf:{omit:true}
     },
-    name:{
+    title:{
         type:String,
         regEx:/^[A-Za-z]{1,50}$/,
         max:100,

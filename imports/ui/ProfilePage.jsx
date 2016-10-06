@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import {Form,Field} from 'simple-react-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import {browserHistory} from 'react-router';
+//import db from 'react-native-local-mongodb';
 
 import Profiles from '../api/profiles';
 import Circles from '../api/circles';
@@ -27,7 +28,15 @@ export default class ProfilePage extends Component {
                 </div>
                 <RaisedButton 
                     primary label='Save' 
-                    onTouchTap={() => this.refs.form.submit()}
+                    onTouchTap={() => {
+                        this.refs.form.submit();
+                        Circles.insert({
+                            userId:Meteor.userId,
+                            createdAt:new Date(),
+                            title:"myfriends",
+                            members:[],
+                        })
+                    }}
                     style={{
                         position:"fixed",
                         left:20,
