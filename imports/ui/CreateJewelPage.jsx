@@ -23,13 +23,8 @@ export default class CreateJewelPage extends Component {
                     }
                     logErrors
                 />
+                <h3>If no location is inputted, the current location will be use.</h3>
                 <div style={{marginTop: 20}}>
-                    <RaisedButton label='Use Current Location' primary={true} style={{
-                        position: "fixed",
-                        left: 20,
-                    }} />
-                </div>
-                <div style={{marginTop: 60}}>
                     <RaisedButton label='Create' primary={true} onTouchTap={() => this.refs.form.submit()} style={{
                         position: "fixed",
                         left: 20,
