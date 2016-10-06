@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
+import {Form,Field} from 'simple-react-form';
 import FlatButton from 'material-ui/FlatButton'
 import moment from 'moment'
 
@@ -17,10 +18,35 @@ export default class Circle extends Component {
         Meteor.call('circles.remove', this.props.circle._id)
     }
 
+    editThisCircle(){
+        console.log(this.props.circle);
+        return(
+            <div>
+            <Form
+                collection={Circles}
+                type='update'
+                ref='form'
+                doc={this.props.circle}
+                logErrors
+            >
+                <Field fieldName='name' />
+                <Field fieldName='members' />
+            </Form>
+            <FlatButton
+                label="Save"
+                primary={true}
+                onTouchTap={() => this.refs.form.submit()}
+            />
+            </div>
+        )
+    }
+
     renderDetails() {
+        console.log(this.props.circle);
         return (
             <div>
                 {this.props.circle.name}
+                {this.props.circle.members}
             </div>
         )
     }
@@ -36,13 +62,9 @@ export default class Circle extends Component {
                     showExpandableButton={true}
                 />
                 <CardText expandable={true}>
-                    {this.renderDetails()}
+                    {this.editThisCircle()}
                 </CardText>
                 <CardActions>
-                    <FlatButton
-                        label="Edit"
-                        primary={true}
-                    />
                     <FlatButton
                         label ="Delete"
                         secondary={true}

@@ -39,16 +39,10 @@ Circles.attachSchema({
         type:[String],
         optional:true,
         srf:{
-            omit:true,
             multi:true,
             type:SelectWithMethod,
         }
     },
-    "members.userId":{
-        type:String,
-        unique:true,
-        srf:{omit:true}
-    }
 });
 
 export default Circles;
