@@ -42,7 +42,7 @@ class AppIconMenu extends Component {
           <Divider />
           <MenuItem
             primaryText="My Profile"
-            href='create-profile'
+            href='my-profile'
           />
           <MenuItem
             primaryText="My Jewels"

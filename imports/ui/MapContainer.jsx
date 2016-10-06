@@ -93,7 +93,7 @@ class MapContainer extends Component {
                     
                 </Map>
                 
-                <FloatingActionButton href="create-profile" style={{
+                <FloatingActionButton href="profile" style={{
                     position:"fixed",
                     right:20,
                     top:20,

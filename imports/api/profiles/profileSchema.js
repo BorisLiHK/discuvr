@@ -45,7 +45,7 @@ Profiles.attachSchema({
         },
         srf:{type:DatePicker},
     },
-    //friends
+    //location
 });
 
 export default Profiles;
