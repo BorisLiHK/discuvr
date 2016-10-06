@@ -17,12 +17,20 @@ export default class Circle extends Component {
         Meteor.call('circles.remove', this.props.circle._id)
     }
 
-    renderDetails() {
-        return (
-            <div>
-                {this.props.circle.title}
-            </div>
-        )
+    renderMembers() {
+        console.log("NEW STUFF")
+
+        return this.props.circle.membersObj.forEach((member) => {
+            return (
+                <li>{member.username}</li>
+            )
+        })
+        // let members =this.props.members
+        // return members.map((member) => {
+        //     return (
+        //         <li>{member.username}</li>
+        //     )
+        // })
     }
 
     render() {
@@ -35,9 +43,14 @@ export default class Circle extends Component {
                     actAsExpander={true}
                     showExpandableButton={true}
                 />
+
+                <CardTitle title="Members" expandable={true} />
                 <CardText expandable={true}>
-                    {this.renderDetails()}
+                    <ul>
+                    {this.renderMembers()}
+                    </ul>
                 </CardText>
+
                 <CardActions>
                     <FlatButton
                         label="Edit"

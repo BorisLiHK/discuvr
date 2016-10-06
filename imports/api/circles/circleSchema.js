@@ -42,9 +42,9 @@ Circles.attachSchema({
     },
     members: {
         type: [String],
+        optional: true,
         srf: {
-            multi: true,
-            type: SelectWithMethod
+            omit: true
         }
     },
 });

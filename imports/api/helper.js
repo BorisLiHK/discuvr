@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import reduce from "reduce-object";
+import { check } from "meteor/check";
 
 if (Meteor.isServer) {
     Meteor.publish("userList", function () {

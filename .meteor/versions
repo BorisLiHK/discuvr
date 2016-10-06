@@ -56,6 +56,8 @@ mdg:geolocation@1.3.0
 mdg:validation-error@0.2.0
 meteor@1.2.17
 meteor-base@1.0.4
+meteorhacks:aggregate@1.3.0
+meteorhacks:collection-utils@1.2.0
 meteortoys:allthings@3.0.0
 meteortoys:authenticate@3.0.0
 meteortoys:autopub@3.0.0
@@ -81,6 +83,7 @@ modules-runtime@0.7.6
 momentjs:moment@2.10.6
 mongo@1.1.12
 mongo-id@1.0.5
+mongo-livedata@1.0.12
 msavin:jetsetter@2.0.0
 msavin:mongol@2.0.1
 npm-bcrypt@0.9.1
