@@ -80,6 +80,7 @@ class MapContainer extends Component {
                             <Feature
                                 key={jewel._id}
                                 id={jewel.id}
+                                userId={jewel.userId}
                                 title={jewel.title}
                                 coordinates={[
                                     jewel.coordinates.longitude,

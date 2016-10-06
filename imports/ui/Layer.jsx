@@ -1,6 +1,7 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl";
 import React, { Component, PropTypes, cloneElement, Children } from "react";
 import isEqual from "deep-equal";
+import { Meteor } from 'meteor/meteor';
 
 import { diff } from "../api/helper";
 import Feature from "./Feature";
@@ -18,13 +19,20 @@ export default class Layer extends Component {
             "type": "FeatureCollection",
             "features": []
         }
+        let icon = "jewel_default"
+        const userId=Meteor.userId()
 
         if (this.props.children.length > 1) {
             this.props.children.map(feature => {
+                //console.log(feature.props)
+                if(feature.props.userId==userId)
+                    icon="jewel_own"
+                else
+                    icon="jewel_default"
                 jewelData.features.push({
                     "type" : "Feature",
                     "properties": {
-                        "icon": "jewel_default",
+                        "icon": icon,
                         "title": feature.props.title
                     },
                     "geometry": {
@@ -34,10 +42,14 @@ export default class Layer extends Component {
                 })
             })
         } else if (this.props.children.length != 0) {
+            if(freture.props.userId==this.userId())
+                icon="jewel_own"
+            else
+                icon="jewel_default"
             jewelData.features.push({
                 "type" : "Feature",
                 "properties": {
-                    "icon": "jewel_default",
+                    "icon": icon,
                     "title": feature.props.title
                 },
                 "geometry": {
