@@ -63,7 +63,14 @@ Jewels.attachSchema({
         srf: {
             type: ObjectComponent
         }
-    }
+    },
+    /*audiences:{
+        type: String,
+        srf:{
+            //omit:true
+            type://Picker
+        }
+    },*/
 });
 
 export default Jewels;

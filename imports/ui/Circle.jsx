@@ -19,28 +19,29 @@ export default class Circle extends Component {
     }
 
     editThisCircle(){
-        console.log(this.props.circle);
+        //console.log(this.props.circle);
         return(
             <div>
-            <Form
-                collection={Circles}
-                type='update'
-                ref='form'
-                doc={this.props.circle}
-                logErrors
-            >
-                <Field fieldName='name' />
-                <Field fieldName='members' />
-            </Form>
-            <FlatButton
-                label="Save"
-                primary={true}
-                onTouchTap={() => this.refs.form.submit()}
-            />
+                <Form
+                    collection={Circles}
+                    type='update'
+                    ref='form'
+                    doc={this.props.circle}
+                    logErrors
+                >
+                    <Field fieldName='name' />
+                    <Field fieldName='members' />
+                </Form>
+                <FlatButton
+                    label="Save"
+                    primary={true}
+                    onTouchTap={() => this.refs.form.submit()}
+                />
             </div>
         )
     }
-
+    //Boris changed the expand into editing so this method is no longer necessary
+    //just keeping it if we need a view circle function later
     renderDetails() {
         console.log(this.props.circle);
         return (
