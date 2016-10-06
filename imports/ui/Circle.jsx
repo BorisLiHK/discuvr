@@ -20,7 +20,7 @@ export default class Circle extends Component {
     renderDetails() {
         return (
             <div>
-                {this.props.circle.title}
+                {this.props.circle.name}
             </div>
         )
     }
@@ -30,7 +30,7 @@ export default class Circle extends Component {
         return (
             <Card>
                 <CardHeader
-                    title={this.props.circle.title}
+                    title={this.props.circle.name}
                     subtitle={createdAt}
                     actAsExpander={true}
                     showExpandableButton={true}
