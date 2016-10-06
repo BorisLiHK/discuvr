@@ -74,3 +74,16 @@ body {
 
     font-size: 14px;
 }
+
+
+
+/*****
+ * Filtered multi select style code
+ *****/
+
+.FilteredMultiSelect__button,
+.FilteredMultiSelect__filter, 
+.FilteredMultiSelect__select {
+    display: block;
+    width: 100%;
+}
