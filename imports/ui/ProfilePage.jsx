@@ -31,6 +31,7 @@ export default class ProfilePage extends Component {
                     onTouchTap={() => {
                         this.refs.form.submit();
                         Circles.insert({
+                            _id:new Meteor.Collection.ObjectID()._str,
                             userId:Meteor.userId,
                             createdAt:new Date(),
                             title:"myfriends",

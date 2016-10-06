@@ -40,6 +40,17 @@ class MyCirclesList extends Component {
                         }}
                     />
                     <RaisedButton
+                        label='Add Friends'
+                        secondary={true}
+                        href="/add-friend"
+                        style={{
+                            position:'fixed',
+                            right: 20
+                        }}
+                    />
+                </div>
+                <div style={{position:'fixed',top:20,}}>
+                    <RaisedButton
                         label='Back to Map'
                         secondary={true}
                         href="/"
