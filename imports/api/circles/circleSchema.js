@@ -4,7 +4,6 @@ import Text from 'simple-react-form-material-ui/lib/text';
 import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 import Textarea from 'simple-react-form-material-ui/lib/textarea';
-import SelectWithMethod from 'simple-react-form-material-ui/lib/select-with-method';
 
 import Circles from './circles'
 
@@ -35,20 +34,13 @@ Circles.attachSchema({
         max:100,
         srf:{type:Text},
     },
-    members:{
-        type:[String],
-        optional:true,
-        srf:{
-            omit:true,
-            multi:true,
-            type:SelectWithMethod,
+    members: {
+        type: [String],
+        optional: true,
+        srf: {
+            omit: true
         }
     },
-    "members.userId":{
-        type:String,
-        unique:true,
-        srf:{omit:true}
-    }
 });
 
 export default Circles;
