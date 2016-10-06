@@ -13,15 +13,6 @@ class MyCirclesList extends Component {
     }
     renderCircles() {
         return this.props.circles.map((circle) => {
-            console.log(circle)
-            // console.log(circle.membersObj)
-
-            circle.membersObj.forEach((row) =>
-                console.log(row)
-            )
-            
-            // let members = Meteor.users.find({_id: {$in: ["e6ejQswRsZzQ6aXb7", "HLhJNNXj4yfHCwMGR"]}}).fetch()
-            // console.log(members)
             return (
                 <Circle
                     key={circle._id}

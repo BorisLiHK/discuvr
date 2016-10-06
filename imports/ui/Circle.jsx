@@ -18,9 +18,10 @@ export default class Circle extends Component {
     }
 
     renderMembers() {
-        console.log("NEW STUFF")
+        let membersObj = this.props.circle.membersObj
 
-        return this.props.circle.membersObj.forEach((member) => {
+        return membersObj.map((member) => {
+            console.log(member.username) 
             return (
                 <li>{member.username}</li>
             )
