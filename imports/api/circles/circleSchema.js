@@ -4,7 +4,7 @@ import Text from 'simple-react-form-material-ui/lib/text';
 import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 import Textarea from 'simple-react-form-material-ui/lib/textarea';
-import SelectWithMethod from 'simple-react-form-material-ui/lib/select-with-method';
+//import SelectWithMethod from 'simple-react-form-material-ui/lib/select-with-method';
 
 import Circles from './circles'
 
@@ -42,9 +42,9 @@ Circles.attachSchema({
     },
     members: {
         type: [String],
+        optional: true,
         srf: {
-            multi: true,
-            type: SelectWithMethod
+            omit: true
         }
     },
 });

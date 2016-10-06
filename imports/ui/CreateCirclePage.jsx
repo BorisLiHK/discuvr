@@ -13,24 +13,22 @@ class CreateCirclePage extends Component {
         super(props)
 
         this.state = {
-            CULTURE_SHIPS: this.props.CULTURE_SHIPS,
-            selectedShips: this.props.selectedShips
+            myFriends: this.props.myFriends,
+            newCircleFriends: []
         }
 
-        this.addShip = this.addShip.bind(this)
-        this.removeShip = this.removeShip.bind(this)
+        this.addFriend = this.addFriend.bind(this)
+        this.removeFriend = this.removeFriend.bind(this)
     }
 
-    addShip(newSelectedShips) {
-        this.setState({selectedShips: newSelectedShips}) 
-        console.log(newSelectedShips)
-        console.log(this.state.selectedShips)
+    addFriend(newFriends) {
+        this.setState({newCircleFriends: newFriends}) 
     }
 
-    removeShip(index) {
-        var newSelectedShips = this.state.selectedShips.slice()
-        newSelectedShips.splice(index, 1)
-        this.setState({selectedShips: newSelectedShips})
+    removeFriend(index) {
+        var newFriends = this.state.newCircleFriends.slice()
+        newFriends.splice(index, 1)
+        this.setState({newCircleFriends: newFriends})
     }
 
     render() {
@@ -49,12 +47,12 @@ class CreateCirclePage extends Component {
 
                 <div style={{marginTop: 20}}>
                     <FilteredMultiSelect
-                        buttonText="Add Ship"
-                        onChange={this.addShip}
-                        options={this.state.CULTURE_SHIPS}
-                        selectedOptions={this.state.selectedShips}
-                        textProp="name"
-                        valueProp="id"
+                        buttonText="Add Friend"
+                        onChange={this.addFriend}
+                        options={this.state.myFriends}
+                        selectedOptions={this.state.newCircleFriends}
+                        textProp="username"
+                        valueProp="_id"
                         classNames={{
                             button: 'FilteredMultiSelect__button',
                             // Used when at least one <option> is selected
@@ -64,11 +62,11 @@ class CreateCirclePage extends Component {
                         }}
                     />
                     <FilteredMultiSelect
-                        buttonText="Remove Ship"
-                        onChange={this.removeShip}
-                        options={this.state.selectedShips}
-                        textProp="name"
-                        valueProp="id"
+                        buttonText="Remove Friend"
+                        onChange={this.removeFriend}
+                        options={this.state.newCircleFriends}
+                        textProp="username"
+                        valueProp="_id"
                         classNames={{
                             button: 'FilteredMultiSelect__button',
                             // Used when at least one <option> is selected
@@ -106,22 +104,16 @@ class CreateCirclePage extends Component {
 }
 
 CreateCirclePage.PropTypes = {
-    members: PropTypes.array,
-    selectedMembers: PropTypes.array,
-    CULTURE_SHIPS: PropTypes.array, 
-    selectedShips: PropTypes.array,
+    myFriends: PropTypes.object
 }
 
 export default createContainer(() => {
     Meteor.subscribe('userList');
+    Meteor.subscribe('mycircles');
 
+    //console.log(Meteor.users.find({_id: {$ne: Meteor.userId()}}).fetch(),)
+    
     return {
-        CULTURE_SHIPS: [
-            {id: 1, name: '5*Gelish-Oplule'},
-            {id: 2, name: '7*Uagren'},
-            {id: 249, name: 'Zero Gravitas'},
-            {id: 250, name: 'Zoologist'}
-        ],
-        selectedShips: []
+        myFriends: Circles.find({"title": "myfriends"}, {fields: {members: 1}}).fetch(),
     };
 }, CreateCirclePage)

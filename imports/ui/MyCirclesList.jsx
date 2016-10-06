@@ -55,16 +55,19 @@ class MyCirclesList extends Component {
 }
 
 MyCirclesList.PropTypes = {
+    allUsers: PropTypes.array,
     circles: PropTypes.array,
-    currentUser: PropTypes.object.isRequired
+    currentUser: PropTypes.object.isRequired,
 };
 
 //fetch by createdAt date or do the sort later?
 export default createContainer(() => {
+    Meteor.subscribe('userList');
     Meteor.subscribe('mycircles');
 
     return {
+        allUsers: Meteor.users.find({_id: {$ne: Meteor.userId()}}).fetch(),
         circles: Circles.find({}, {sort: {createdAt : -1}}).fetch(),
-        currentUser: Meteor.user()
+        currentUser: Meteor.user(),
     };
 }, MyCirclesList);
