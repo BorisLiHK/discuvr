@@ -127,7 +127,7 @@ export default createContainer(() => {
 
     return {
         jewels: Jewels.find().fetch(),
-        circles: Circles.find().fetch(),
-        profiles: Profiles.find().fetch(),
+        circles: Circles.find({userId:Meteor.userId()}).fetch(),
+        profiles: Profiles.find({userId:Meteor.userId()}).fetch(),
     };
 }, MapContainer);

@@ -109,7 +109,7 @@ export default createContainer(() => {
     Meteor.subscribe('profiles');
 
     return {
-        circles: Circles.find().fetch(),
-        profiles: Profiles.find().fetch(),
+        circles: Circles.find({userId:Meteor.userId()}).fetch(),
+        profiles: Profiles.find({userId:Meteor.userId()}).fetch(),
     };
 }, ProfilePage);
