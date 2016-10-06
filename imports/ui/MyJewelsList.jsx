@@ -29,7 +29,7 @@ class MyJewelsList extends Component {
                 <div className="jewel_cards">
                     {this.renderJewels()}
                 </div>
-                <div style={{marginTop: 20}}>
+                <div style={{position:'fixed',top:20,}}>
                     <RaisedButton
                         label='Back to Map'
                         secondary={true}
