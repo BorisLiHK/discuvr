@@ -15,6 +15,7 @@ import ViewJewelPage from '../../ui/ViewJewelPage';
 import AddFriendPage from '../../ui/AddFriendPage';
 import MyJewelsList from '../../ui/MyJewelsList';
 import MyCirclesList from '../../ui/MyCirclesList';
+import FindUserPage from '../../ui/FindUserPage';
 
 function redirectToMap(nextState, replace) {
     if (Meteor.userId()) {
@@ -75,6 +76,7 @@ export const renderRoutes = () => (
             <Route path="my-circles" component={MyCirclesList} />
             <Route path="add-friend" component={AddFriendPage} />
             <Route path="create-profile" component={CreateProfilePage} onEnter={redirectToProfile} />
+            <Route path="test" component={FindUserPage} />
         </Route>
     </Router>
 );
