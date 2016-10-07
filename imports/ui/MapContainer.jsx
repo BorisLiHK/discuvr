@@ -8,7 +8,6 @@ import ProfileIcon from 'material-ui/svg-icons/social/person';
 import Map from './Map';
 import Layer from './Layer'
 import Feature from "./Feature";
-import AccountsUIWrapper from './AccountsUIWrapper';
 import Jewels from '../api/jewels';
 import Circles from '../api/circles';
 import Profiles from '../api/profiles';
