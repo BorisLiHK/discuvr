@@ -40,10 +40,14 @@ Jewels.attachSchema({
     },
     date: {
         type: Date,
-        optional: true,
+        //optional: true,
         label: 'Date (optional)',
         max: function() {
             return new Date()
+        },
+        autoValue:function(){
+            if(this.isSet==false)
+                return new Date()
         },
         srf: {
             type: DatePicker
