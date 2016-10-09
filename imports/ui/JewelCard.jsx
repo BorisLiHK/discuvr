@@ -29,7 +29,6 @@ export default class Jewel extends Component {
                 <Field fieldName='title' />
                 <Field fieldName='date' />
                 <Field fieldName='description' />
-                <Field fieldName='category' />
                 <Field fieldName='coordinates' />
             </Form>
             <FlatButton

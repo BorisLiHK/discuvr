@@ -3,13 +3,10 @@ import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import Text from 'simple-react-form-material-ui/lib/text';
 import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object';
-import Textarea from 'simple-react-form-material-ui/lib/textarea';
+import Textarea from 'simple-react-form-material-ui/lib/textarea'
+import CoordinateSchema from '../helpers'
 
-import Category from '../../ui/Category.jsx';
-
-import CoordinateSchema from '../helpers';
-
-import Jewels from './jewels';
+import Jewels from './jewels'
 
 SimpleSchema.extendOptions({
   srf: Match.Optional(Object)
@@ -63,14 +60,6 @@ Jewels.attachSchema({
         max: 1000,
         srf: {
             type: Textarea
-        }
-    },
-    category: {
-        type: String,
-        optional: true,
-        label: 'Category (optional)',
-        srf: {
-            type: Category
         }
     },
     coordinates: {
