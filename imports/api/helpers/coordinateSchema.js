@@ -8,20 +8,20 @@ SimpleSchema.extendOptions({
 });
 
 const CoordinateSchema = new SimpleSchema({
-    longitude: {
-        type: Number,
-        decimal: true,
-        min: -180,
-        max: 180,
-        srf: {
-            type: Text
-        }
-    },
     latitude: {
         type: Number,
         decimal: true,
         min: -90,
         max: 90,
+        srf: {
+            type: Text
+        }
+    },
+    longitude: {
+        type: Number,
+        decimal: true,
+        min: -180,
+        max: 180,
         srf: {
             type: Text
         }
