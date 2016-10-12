@@ -3,7 +3,7 @@ import reactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import {createContainer} from 'meteor/react-meteor-data';
 import IconMenu from 'material-ui/IconMenu';
-import Avatar from 'material-ui/Avatar';
+import Avatar from 'react-Avatar';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
@@ -16,6 +16,12 @@ import Divider from 'material-ui/Divider/Divider';
 
 
 class AppIconMenu extends Component {
+
+  
+  profilePicture() {
+        alert('1');
+        return "http://graph.facebook.com/"+ Meteor.user().services.facebook.id+ "/picture/?type=small"; 
+  }
 
   render() {
     return (
@@ -32,11 +38,8 @@ class AppIconMenu extends Component {
           targetOrigin={{horizontal: 'right', vertical: 'top'}}
         >
           <List>
-          <ListItem 
-          leftAvatar={
-            <Avatar>H</Avatar>
-          }
-          >{this.props.currentUser ? <span>{this.props.currentUser.username}</span> : ''}
+          <ListItem>
+          <Avatar name ="{this.props.currentUser ? {this.props.currentUser.username || this.props.currentUser.profile.name}" />
           </ListItem>
           </List>
           <Divider />
@@ -58,6 +61,7 @@ class AppIconMenu extends Component {
           />
         </IconMenu>
       </div>
+
     )
   }
 }
