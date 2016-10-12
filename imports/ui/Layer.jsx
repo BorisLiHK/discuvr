@@ -62,7 +62,7 @@ export default class Layer extends Component {
             'type': this.props.type,
             'source': this.props.source,
             'layout': this.props.layout
-        })
+        },'avatar')
     }
 
     componentWillReceiveProps(nextProps) {

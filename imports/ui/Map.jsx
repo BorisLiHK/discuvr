@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Meteor from 'meteor/meteor'
 import MapboxGl from "mapbox-gl/dist/mapbox-gl";
 import isEqual from "deep-equal";
 
@@ -127,7 +128,7 @@ export default class Map extends Component {
                         "coordinates":this.props.center
                     },
                     "properties":{
-                        "title":"User",
+                        "title":"",
                         "icon":"User"
                     }
                 }
@@ -277,7 +278,7 @@ export default class Map extends Component {
                     "coordinates":nextProps.center
                 },
                 "properties":{
-                    "title":"User",
+                    "title":"",
                     "icon":"User"
                 }
             })

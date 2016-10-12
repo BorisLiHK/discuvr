@@ -4,6 +4,7 @@ import Text from 'simple-react-form-material-ui/lib/text';
 import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 import Textarea from 'simple-react-form-material-ui/lib/textarea'
+import CoordinateSchema from '../helpers'
 
 import Profiles from './profiles'
 
@@ -45,7 +46,11 @@ Profiles.attachSchema({
         },
         srf:{type:DatePicker},
     },
-    //friends
+    location:{
+        type:CoordinateSchema,
+        optional:true,
+        srf:{omit:true}
+    }
 });
 
 export default Profiles;

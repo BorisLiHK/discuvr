@@ -42,13 +42,13 @@ class AppIconMenu extends Component {
           leftAvatar={
             <Avatar>H</Avatar>
           }
-          >{this.props.currentUser ? <span>{this.props.currentUser.username}</span> : ''}
+          >{this.props.currentUser ? <span>{this.props.currentUser.username || this.props.currentUser.profile.name}</span> : ''}
           </ListItem>
           </List>
           <Divider />
           <MenuItem
             primaryText="My Profile"
-            href='create-profile'
+            href='my-profile'
           />
           <MenuItem
             primaryText="My Jewels"

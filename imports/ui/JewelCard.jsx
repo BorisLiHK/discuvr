@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
+import {Form,Field} from 'simple-react-form';
 import FlatButton from 'material-ui/FlatButton'
 import moment from 'moment'
 
@@ -15,6 +16,33 @@ export default class Jewel extends Component {
 
     deleteThisJewel() {
         Meteor.call('jewels.remove', this.props.jewel._id)
+    }
+    editThisJewel(){
+        return(<div>
+            <Form
+                collection={Jewels}
+                type='update'
+                ref='form'
+                doc={this.props.jewel}
+                logErrors
+            >
+                <Field fieldName='title' />
+                <Field fieldName='date' />
+                <Field fieldName='description' />
+                <Field fieldName='category' />
+                <Field fieldName='coordinates' />
+            </Form>
+            <FlatButton
+                label="Save"
+                primary={true}
+                onTouchTap={() => this.refs.form.submit()}
+            />
+            <FlatButton
+                label="Delete"
+                secondary={true}
+                onTouchTap={() => this.deleteThisJewel()}
+            />
+        </div>)
     }
 
     renderDetails() {
@@ -36,19 +64,8 @@ export default class Jewel extends Component {
                     showExpandableButton={true}
                 />
                 <CardText expandable={true}>
-                    {this.renderDetails()}
+                    {this.editThisJewel()}
                 </CardText>
-                <CardActions>
-                    <FlatButton
-                        label="Edit"
-                        primary={true}
-                    />
-                    <FlatButton
-                        label ="Delete"
-                        secondary={true}
-                        onTouchTap={() => this.deleteThisJewel()}
-                    />
-                </CardActions>
             </Card>
         )
     }

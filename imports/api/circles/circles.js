@@ -1,7 +1,19 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
-const Circles = new Mongo.Collection('circles');
+const Circles = new Mongo.Collection('circles', {
+    transform: function(doc) {
+        
+        if (!doc.members) {
+            doc.members = []
+        }
+
+        doc.membersObj = Meteor.users.find({
+            _id: { $in: doc.members }
+        });
+        return doc;
+    }
+});
 
 if (Meteor.isServer) {
     // This code only runs on the server
@@ -26,6 +38,18 @@ Meteor.methods({
         }
 
         Circles.remove(circleId);
+    },
+
+    'circles.addFriend'(friendId, circleId) {
+        check(friendId, String);
+        check(circleId, String);
+
+        const circle = Circles.findOne(circleId);
+        if (circle.userId !== this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        Circles.update({_id: circleId}, {$push: {members: friendId}})
     },
 });
 

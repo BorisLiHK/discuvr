@@ -1,15 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import {Form} from 'simple-react-form';
+import {Form, Field} from 'simple-react-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import {browserHistory} from 'react-router';
 
 import Jewels from '../api/jewels';
+import Category from './Category.jsx';
 
 export default class CreateJewelPage extends Component {
-    handleSubmit(event) {
-        Console.log(this);
+    constructor(props) {
+        super(props);
+        this.state = {}
     }
+    handleSubmit(event) {
+        console.log(this.state);
+    }
+    
     render() {
         return (
             <div>
@@ -23,32 +29,29 @@ export default class CreateJewelPage extends Component {
                     }
                     logErrors
                 />
-                <div style={{marginTop: 20}}>
-                    <RaisedButton label='Create' primary={true} onTouchTap={() => this.refs.form.submit()} style={{
-                        position: "fixed",
-                        left: 20,
-                    }}/>
-                    <RaisedButton label='Cancel' secondary={true} href="/" style={{
-                        position: "fixed",
-                        right: 20,
-                    }} />
+                <div style={{
+                    position: "relative",
+                    marginTop: 20
+                }}>
+                    <RaisedButton
+                        label='Create'
+                        primary={true}
+                        onTouchTap={() => this.refs.form.submit()}
+                        style={{
+                            position: "fixed",
+                            left: 20,
+                        }}
+                    />
+                    <RaisedButton
+                        label='Cancel'
+                        secondary={true}
+                        href="/"
+                        style={{
+                            position: "fixed",
+                            right: 20,
+                        }}
+                    />
                 </div>
-                <RaisedButton
-                    label='Create' primary={true}
-                    onTouchTap={()=> this.refs.form.submit()}
-                    style={{
-                        position: "fixed",
-                        left: 20,
-                    }}
-                />
-                <RaisedButton
-                    label='Cancel' secondary={true}
-                    href="/"
-                    style={{
-                        position: "fixed",
-                        right: 20,
-                    }}
-                />
             </div>
         );
     }
