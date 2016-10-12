@@ -3,7 +3,7 @@ import reactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import {createContainer} from 'meteor/react-meteor-data';
 import IconMenu from 'material-ui/IconMenu';
-import Avatar from 'react-Avatar';
+import Avatar from 'react-avatar';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
@@ -38,8 +38,11 @@ class AppIconMenu extends Component {
           targetOrigin={{horizontal: 'right', vertical: 'top'}}
         >
           <List>
-          <ListItem>
-          <Avatar name ="{this.props.currentUser ? {this.props.currentUser.username || this.props.currentUser.profile.name}" />
+          <ListItem 
+          leftAvatar={
+            <Avatar>H</Avatar>
+          }
+          >{this.props.currentUser ? <span>{this.props.currentUser.username}</span> : ''}
           </ListItem>
           </List>
           <Divider />
