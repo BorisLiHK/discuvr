@@ -36,7 +36,7 @@ class AppIconMenu extends Component {
           leftAvatar={
             <Avatar>H</Avatar>
           }
-          >{this.props.currentUser ? <span>{this.props.currentUser.username}</span> : ''}
+          >{this.props.currentUser ? <span>{this.props.currentUser.username || this.props.currentUser.profile.name}</span> : ''}
           </ListItem>
           </List>
           <Divider />
