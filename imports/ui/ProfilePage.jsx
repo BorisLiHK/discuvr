@@ -109,6 +109,6 @@ export default createContainer(() => {
 
     return {
         circles: Circles.find().fetch(),
-        profiles: Profiles.find().fetch(),
+        profiles: Profiles.find({userId: Meteor.userId()}).fetch(),
     };
 }, ProfilePage);

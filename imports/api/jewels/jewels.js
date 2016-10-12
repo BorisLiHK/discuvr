@@ -1,7 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
-const Jewels = new Mongo.Collection('jewels');
+const Jewels = new Mongo.Collection('jewels', {
+    transform: function(doc) {
+        doc.ownerObj = Meteor.users.find({
+            _id: doc.userId
+        });
+        return doc;
+    }
+});
 
 if (Meteor.isServer) {
     // This code only runs on the server
@@ -12,6 +19,10 @@ if (Meteor.isServer) {
 
     Meteor.publish('myjewels', function myJewelsPublication() {
         return Jewels.find({userId: this.userId});
+    });
+
+    Meteor.publish('publicjewels', function publicJewelsPublication() {
+        return Jewels.find({private: {$ne:true}});
     });
 }
 
