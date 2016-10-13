@@ -17,12 +17,6 @@ import Divider from 'material-ui/Divider/Divider';
 
 class AppIconMenu extends Component {
 
-  
-  profilePicture() {
-        alert('1');
-        return "http://graph.facebook.com/"+ Meteor.user().services.facebook.id+ "/picture/?type=small"; 
-  }
-
   render() {
     return (
       <div
@@ -38,11 +32,8 @@ class AppIconMenu extends Component {
           targetOrigin={{horizontal: 'right', vertical: 'top'}}
         >
           <List>
-          <ListItem 
-          leftAvatar={
-            <Avatar>H</Avatar>
-          }
-          >{this.props.currentUser ? <span>{this.props.currentUser.username || this.props.currentUser.profile.name}</span> : ''}
+          <ListItem>
+          {this.props.currentUser ? <span>{this.props.currentUser.username || this.props.currentUser.profile.name}</span> : ''}
           </ListItem>
           </List>
           <Divider />
