@@ -13,6 +13,7 @@ const CoordinateSchema = new SimpleSchema({
         decimal: true,
         min: -90,
         max: 90,
+        defaultValue: -33.884,
         srf: {
             type: Text
         }
@@ -22,6 +23,7 @@ const CoordinateSchema = new SimpleSchema({
         decimal: true,
         min: -180,
         max: 180,
+        defaultValue: 151.199,
         srf: {
             type: Text
         }
