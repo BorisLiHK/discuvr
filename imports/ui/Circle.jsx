@@ -41,14 +41,15 @@ export default class Circle extends Component {
                     {
                         this.props.circle.membersObj.map((member, i) => {
                             return (
-                                <li key={i}>
-                                    {member.username} 
-                                    <button
+                                <li key={i}> 
+                                    <button 
+                                        className="deletecircle"
                                         data-member={member._id} 
                                         onClick={this.deleteMember}
                                     >
-                                        Remove
+                                        X
                                     </button>
+                                    {member.username}
                                 </li>
                             )
                         }, this)

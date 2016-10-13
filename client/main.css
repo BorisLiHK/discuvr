@@ -87,3 +87,8 @@ body {
     display: block;
     width: 100%;
 }
+
+.deletecircle {
+    background-color: transparent;
+    margin-right: 10px
+}
