@@ -30,16 +30,13 @@ Circles.attachSchema({
     },
     title:{
         type:String,
-        regEx:/^[A-Za-z]{1,50}$/,
         max:100,
         srf:{type:Text},
     },
     members: {
         type: [String],
         optional: true,
-        srf: {
-            omit: true
-        }
+        srf:{omit: true}
     },
 });
 

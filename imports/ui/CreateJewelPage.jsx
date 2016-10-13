@@ -31,15 +31,16 @@ export default class CreateJewelPage extends Component {
                 />
                 <div style={{
                     position: "relative",
-                    marginTop: 20
+                    marginTop: 20,
                 }}>
                     <RaisedButton
                         label='Create'
                         primary={true}
                         onTouchTap={() => this.refs.form.submit()}
                         style={{
-                            position: "fixed",
+                            position: "absolute",
                             left: 20,
+                            marginBottom: 20
                         }}
                     />
                     <RaisedButton
@@ -47,8 +48,9 @@ export default class CreateJewelPage extends Component {
                         secondary={true}
                         href="/"
                         style={{
-                            position: "fixed",
+                            position: "absolute",
                             right: 20,
+                            marginBottom: 20
                         }}
                     />
                 </div>
