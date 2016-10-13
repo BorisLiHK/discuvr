@@ -10,7 +10,6 @@ export default class LogoutPage extends Component {
     }
 
     render() {
-        browserHistory.push('/')
         return (
         <div>
         	<h1> You have been logged out sucessfully. </h1>
