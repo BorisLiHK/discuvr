@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
-//import {browserHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 
 const Profiles = new Mongo.Collection('profiles');
 
@@ -23,7 +23,9 @@ Meteor.methods({
 		if(profile){
 			//browserHistory.push('/my-profile');
 			Profiles.update({userId:userId},{$set:{location:{latitude: pos[1], longitude: pos[0]}}});
-
+		}
+		else{
+			browserHistory.push('/my-profile');
 		}
 	},
 	'profiles.getLocation'(userId){
