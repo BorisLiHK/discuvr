@@ -51,6 +51,15 @@ Meteor.methods({
 
         Circles.update({_id: circleId}, {$push: {members: friendId}})
     },
+
+    'circles.addCircle'(circleTitle, circleMembers) {
+        console.log(circleTitle)
+        console.log(circleMembers)
+        check(circleTitle, String);
+        check(circleMembers, Array);
+
+        Circles.insert({title: circleTitle}, {members: circleMembers})
+    },
 });
 
 export default Circles
