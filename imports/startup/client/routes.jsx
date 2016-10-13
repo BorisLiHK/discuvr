@@ -14,6 +14,9 @@ import ViewJewelPage from '../../ui/ViewJewelPage';
 import AddFriendPage from '../../ui/AddFriendPage';
 import MyJewelsList from '../../ui/MyJewelsList';
 import MyCirclesList from '../../ui/MyCirclesList';
+import JewelList from '../../ui/JewelList';
+
+import FileUpload from '../../ui/FileUpload'
 
 function redirectToMap(nextState, replace) {
     if (Meteor.userId()) {
@@ -54,6 +57,8 @@ export const renderRoutes = () => (
             <Route path="my-circles" component={MyCirclesList} />
             <Route path="add-friend" component={AddFriendPage} />
             <Route path="my-profile" component={ProfilePage} />
+            <Route path="file-upload" component={FileUpload} />
+            <Route path="jewel-list" component={JewelList} />
         </Route>
     </Router>
 );

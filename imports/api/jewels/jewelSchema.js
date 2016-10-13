@@ -4,16 +4,61 @@ import Text from 'simple-react-form-material-ui/lib/text';
 import DatePicker from 'simple-react-form-material-ui/lib/date-picker';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 import Textarea from 'simple-react-form-material-ui/lib/textarea';
+import Checkbox from 'simple-react-form-material-ui/lib/checkbox';
+import ArrayComponent from 'simple-react-form-material-ui/lib/array';
 
 import Category from '../../ui/Category.jsx';
 
 import CoordinateSchema from '../helpers';
+//import RatingSchema from '../helpers';
 
 import Jewels from './jewels';
 
 SimpleSchema.extendOptions({
   srf: Match.Optional(Object)
 });
+
+const RatingSchema = new SimpleSchema({
+    value: {
+        type: Number,
+        decimal: true,
+        min: 0,
+        max: 5,
+        srf: {
+            type: Text
+        }
+    },
+    raterId: {
+        type: String,
+        autoValue: function() {
+            return this.userId
+        },
+        srf: {
+            omit: true,
+            type: Text
+        }
+    },
+    ratedAt: {
+        type: Date,
+        autoValue: function() {
+            return new Date()
+        },
+        srf: {
+            omit: true
+        }
+    }
+})
+
+//Trick to get simple-react-forms package to display
+//the participants
+const ParticipantSchema = new SimpleSchema({
+    participantId: {
+        type: String,
+        srf: {
+            type: Text
+        }
+    }
+})
 
 Jewels.attachSchema({
     userId: {
@@ -82,6 +127,43 @@ Jewels.attachSchema({
         },
         srf: {
             type: ObjectComponent
+        }
+    },
+    private: {
+        type: Boolean,
+        // autoValue: function() {
+        //     return false
+        // },
+        optional: true,
+        srf: {
+            type: Checkbox
+        }
+    },
+    participants: {
+        type: [ParticipantSchema],
+        optional: true,
+        srf: {
+            omit: false,
+            type: ArrayComponent
+        }
+    },
+    rating: {
+        type: [RatingSchema],
+        optional: true,
+        srf: {
+            omit: true,
+            type: ArrayComponent
+        }
+    },
+    flagged: {
+        type: Boolean,
+        autoValue:function() {
+            return false
+        },
+        label: 'Flag',
+        srf: {
+            omit: true,
+            type: Checkbox
         }
     }
 });
