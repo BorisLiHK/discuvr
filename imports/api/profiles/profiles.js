@@ -26,11 +26,7 @@ Meteor.methods({
 	'profiles.getLocation'(userId){
 		check(userId,String);
 		const profile=Profiles.findOne({userId:userId});
-		if(!profile){
-			throw new Meteor.Error('not-found');
-		}
 		return profile.location;
-
 	}
 });
 

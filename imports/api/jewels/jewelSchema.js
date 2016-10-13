@@ -122,8 +122,10 @@ Jewels.attachSchema({
         type: CoordinateSchema,
         optional:true,
         autoValue:function(){
-            if(this.isSet==false)
-                return Meteor.call('profiles.getLocation',Meteor.userId());
+            if(this.isSet==false){
+                const userId=Meteor.userId();
+                return Meteor.call('profiles.getLocation',userId);
+            }
         },
         srf: {
             type: ObjectComponent
