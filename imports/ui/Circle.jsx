@@ -11,27 +11,17 @@ import Circles from '../api/circles'
 export default class Circle extends Component {
     constructor(props) {
         super(props)
+
+        this.deleteMember = this.deleteMember.bind(this);
     }
 
     deleteThisCircle() {
         Meteor.call('circles.remove', this.props.circle._id)
     }
 
-    renderMembers() {
-        let membersObj = this.props.circle.membersObj
-
-        return membersObj.map((member) => {
-            console.log(member.username) 
-            return (
-                <li>{member.username}</li>
-            )
-        })
-        // let members =this.props.members
-        // return members.map((member) => {
-        //     return (
-        //         <li>{member.username}</li>
-        //     )
-        // })
+    deleteMember(e) {
+        console.log(e.currentTarget.dataset.member)
+        Meteor.call('circles.removeFriend', e.currentTarget.dataset.member, this.props.circle._id)
     }
 
     render() {
@@ -48,7 +38,21 @@ export default class Circle extends Component {
                 <CardTitle title="Members" expandable={true} />
                 <CardText expandable={true}>
                     <ul>
-                    {this.renderMembers()}
+                    {
+                        this.props.circle.membersObj.map((member, i) => {
+                            return (
+                                <li key={i}>
+                                    {member.username} 
+                                    <button
+                                        data-member={member._id} 
+                                        onClick={this.deleteMember}
+                                    >
+                                        Remove
+                                    </button>
+                                </li>
+                            )
+                        }, this)
+                    }
                     </ul>
                 </CardText>
 
