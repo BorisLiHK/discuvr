@@ -27,6 +27,17 @@ Meteor.methods({
 		check(userId,String);
 		const profile=Profiles.findOne({userId:userId});
 		return profile.location;
+	},
+	'profiles.exist'(userId){
+		console.log("exist called");
+		check(userId,String);
+		const profile=Profiles.findOne({userId:userId});
+		if(!profile){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 });
 

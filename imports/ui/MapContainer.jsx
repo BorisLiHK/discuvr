@@ -11,7 +11,8 @@ import Feature from "./Feature";
 import Jewels from '../api/jewels';
 import Circles from '../api/circles';
 import Profiles from '../api/profiles';
-import AppIconMenu from './IconMenu'
+import AppIconMenu from './IconMenu';
+import {browserHistory} from 'react-router';
 
 class MapContainer extends Component {
     constructor(props) {
@@ -54,6 +55,12 @@ class MapContainer extends Component {
                 //console.log("newMapCenter: ", that.state.mapCenter);
             })
         },3000);
+    }
+
+    componentDidUpdate(prevProps){
+        if(this.props.profiles.length==0){
+            browserHistory.push('/my-profile');
+        }
     }
 
     render() {
