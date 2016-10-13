@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/FlatButton'
 import moment from 'moment'
 
 import Jewels from '../api/jewels'
+import RateJewel from './RateJewel'
 
 // Jewel component - represents a single jewel item
 // this.props.jewel.description
@@ -78,6 +79,7 @@ export default class Jewel extends Component {
                     <em>Author: </em>{this.getUsername()}<br />
                     { this.props.jewel.description ?
                         (<div><em>Description: </em>{this.props.jewel.description}<br /></div>) : '' }
+                    <RateJewel />
                 </CardText>
                 <CardActions>
                     <FlatButton
