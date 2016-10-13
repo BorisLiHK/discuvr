@@ -7,7 +7,6 @@ import FlatButton from 'material-ui/FlatButton'
 import moment from 'moment'
 
 import Jewels from '../api/jewels'
-import RateJewel from './RateJewel'
 
 // Jewel component - represents a single jewel item
 // this.props.jewel.description
