@@ -29,6 +29,7 @@ export default class CreateJewelPage extends Component {
                     }
                     logErrors
                 />
+                <h3>If no coordinates are entered, then the current location is used.</h3>
                 <div style={{
                     position: "relative",
                     marginTop: 20,
