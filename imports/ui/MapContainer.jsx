@@ -49,7 +49,9 @@ class MapContainer extends Component {
         window.setInterval(() => { 
             that.getCenter((pos) => {
                 that.setState({mapCenter: pos})
-                console.log("newMapCenter: ", that.state.mapCenter);
+                //console.log(that);
+                //TODO update location in profile
+                //console.log("newMapCenter: ", that.state.mapCenter);
             })
         },3000);
     }
@@ -79,6 +81,7 @@ class MapContainer extends Component {
                             <Feature
                                 key={jewel._id}
                                 id={jewel.id}
+                                userId={jewel.userId}
                                 title={jewel.title}
                                 coordinates={[
                                     jewel.coordinates.longitude,
@@ -121,12 +124,12 @@ MapContainer.PropTypes = {
 
 export default createContainer(() => {
     Meteor.subscribe('jewels');
-    Meteor.subscribe('circles');
-    Meteor.subscribe('profiles');
+    Meteor.subscribe('mycircles');
+    Meteor.subscribe('myprofiles');
 
     return {
         jewels: Jewels.find().fetch(),
-        circles: Circles.find().fetch(),
-        profiles: Profiles.find().fetch(),
+        circles: Circles.find({}).fetch(),
+        profiles: Profiles.find({}).fetch(),
     };
 }, MapContainer);

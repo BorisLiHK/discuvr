@@ -31,6 +31,7 @@ export default class ProfilePage extends Component {
                     onTouchTap={() => {
                         this.refs.form.submit();
                         Circles.insert({
+                            _id:new Meteor.Collection.ObjectID()._str,
                             userId:Meteor.userId,
                             createdAt:new Date(),
                             title:"myfriends",
@@ -104,11 +105,11 @@ export default class ProfilePage extends Component {
 }
 
 export default createContainer(() => {
-    Meteor.subscribe('circles');
-    Meteor.subscribe('profiles');
+    Meteor.subscribe('mycircles');
+    Meteor.subscribe('myprofiles');
 
     return {
-        circles: Circles.find().fetch(),
-        profiles: Profiles.find().fetch(),
+        circles: Circles.find({}).fetch(),
+        profiles: Profiles.find({}).fetch(),
     };
 }, ProfilePage);

@@ -129,7 +129,7 @@ export default class Map extends Component {
                     },
                     "properties":{
                         "title":"",
-                        "icon":"User"
+                        "icon":"avatar"
                     }
                 }
             })
@@ -279,7 +279,7 @@ export default class Map extends Component {
                 },
                 "properties":{
                     "title":"",
-                    "icon":"User"
+                    "icon":"avatar"
                 }
             })
         }

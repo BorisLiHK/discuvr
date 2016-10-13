@@ -51,6 +51,25 @@ Meteor.methods({
 
         Circles.update({_id: circleId}, {$push: {members: friendId}})
     },
+
+    'circles.addCircle'(circleTitle, circleMembers) {
+        check(circleTitle, String);
+        check(circleMembers, Array);
+
+        Circles.insert({title: circleTitle, members: circleMembers})
+    },
+
+    'circles.removeFriend'(friendId, circleId) {
+        check(friendId, String);
+        check(circleId, String);
+
+        const circle = Circles.findOne(circleId);
+        if (circle.userId !== this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        Circles.update({_id: circleId}, {$pull: {members: friendId}})
+    }
 });
 
 export default Circles

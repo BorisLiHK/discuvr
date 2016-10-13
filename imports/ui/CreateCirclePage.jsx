@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
-import {Form} from 'simple-react-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import {browserHistory} from 'react-router';
 import FilteredMultiSelect from 'react-filtered-multiselect';
+import TextField from 'material-ui/TextField';
 
 import Circles from '../api/circles';
 
@@ -13,12 +13,25 @@ class CreateCirclePage extends Component {
         super(props)
 
         this.state = {
-            myFriends: this.props.myFriends,
-            newCircleFriends: []
+            newCircleFriends: new Array
         }
 
         this.addFriend = this.addFriend.bind(this)
         this.removeFriend = this.removeFriend.bind(this)
+        this.render = this.render.bind(this)
+        this.submit = this.submit.bind(this)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            //myFriends: nextProps.friendCircle[0].membersObj
+            myFriends: nextProps.friendCircle[0].membersObj.map((member) => {
+                return {
+                    username: member.username,
+                    _id: member._id
+                }
+            })
+        })
     }
 
     addFriend(newFriends) {
@@ -31,55 +44,62 @@ class CreateCirclePage extends Component {
         this.setState({newCircleFriends: newFriends})
     }
 
+    submit() {
+        const text = document.getElementById("tbTitle").value;
+        Meteor.call('circles.addCircle', text, this.state.newCircleFriends.map(function(a) {return a._id}))
+    }
+
     render() {
         return (
             <div>
                 <h1>Create a New Circle</h1>
-                <Form
-                    collection={Circles}
-                    type='insert'
-                    ref='form'
-                    onSuccess={()=>
-                        browserHistory.push('/')
-                    }
-                    logErrors
+                <TextField
+                    id="tbTitle"
+                    hintText="title"
+                    floatingLabelText="Title"
+                    fullWidth={true}
                 />
 
-                <div style={{marginTop: 20}}>
-                    <FilteredMultiSelect
-                        buttonText="Add Friend"
-                        onChange={this.addFriend}
-                        options={this.state.myFriends}
-                        selectedOptions={this.state.newCircleFriends}
-                        textProp="username"
-                        valueProp="_id"
-                        classNames={{
-                            button: 'FilteredMultiSelect__button',
-                            // Used when at least one <option> is selected
-                            buttonActive: 'FilteredMultiSelect__button--active',
-                            filter: 'FilteredMultiSelect__filter',
-                            select: 'FilteredMultiSelect__select'
-                        }}
-                    />
-                    <FilteredMultiSelect
-                        buttonText="Remove Friend"
-                        onChange={this.removeFriend}
-                        options={this.state.newCircleFriends}
-                        textProp="username"
-                        valueProp="_id"
-                        classNames={{
-                            button: 'FilteredMultiSelect__button',
-                            // Used when at least one <option> is selected
-                            buttonActive: 'FilteredMultiSelect__button--active',
-                            filter: 'FilteredMultiSelect__filter',
-                            select: 'FilteredMultiSelect__select'
-                        }}
-                        style={{marginTop: 20}}
-                    />
-                </div>
+                {
+                    (this.state.myFriends && this.state.myFriends.length !== 0) ? (
+                        <div style={{marginTop: 20}}>
+                            <FilteredMultiSelect
+                                buttonText="Add Friend"
+                                onChange={this.addFriend}
+                                options={this.state.myFriends}
+                                selectedOptions={this.state.newCircleFriends}
+                                textProp="username"
+                                valueProp="_id"
+                                classNames={{
+                                    button: 'FilteredMultiSelect__button',
+                                    // Used when at least one <option> is selected
+                                    buttonActive: 'FilteredMultiSelect__button--active',
+                                    filter: 'FilteredMultiSelect__filter',
+                                    select: 'FilteredMultiSelect__select'
+                                }}
+                            />
+
+                            <FilteredMultiSelect
+                                buttonText="Remove Friend"
+                                onChange={this.removeFriend}
+                                options={this.state.newCircleFriends}
+                                textProp="username"
+                                valueProp="_id"
+                                classNames={{
+                                    button: 'FilteredMultiSelect__button',
+                                    // Used when at least one <option> is selected
+                                    buttonActive: 'FilteredMultiSelect__button--active',
+                                    filter: 'FilteredMultiSelect__filter',
+                                    select: 'FilteredMultiSelect__select'
+                                }}
+                                style={{marginTop: 20}}
+                            />
+                        </div>
+                    ) : ''
+                }
 
                 <div style={{marginTop: 20}}>
-                    <RaisedButton label='Create' primary={true} onTouchTap={() => this.refs.form.submit()} style={{
+                    <RaisedButton label='Create' primary={true} onTouchTap={this.submit} style={{
                         position: 'fixed',
                         left: 20,
                     }}/>
@@ -88,32 +108,20 @@ class CreateCirclePage extends Component {
                         right: 20,
                     }} />
                 </div>
-                <RaisedButton 
-                    primary label='Create'
-                    onTouchTap={() => this.refs.form.submit()}
-                    style={{position:"fixed",left:20,}}
-                />
-                <RaisedButton
-                    secondary label='Cancel'
-                    href="/"
-                    style={{position:"fixed",right:20,}}
-                />
             </div>
         );
     }
 }
 
 CreateCirclePage.PropTypes = {
-    myFriends: PropTypes.object
+    friendCircle: PropTypes.array,
 }
 
 export default createContainer(() => {
     Meteor.subscribe('userList');
     Meteor.subscribe('mycircles');
-
-    //console.log(Meteor.users.find({_id: {$ne: Meteor.userId()}}).fetch(),)
     
     return {
-        myFriends: Circles.find({"title": "myfriends"}, {fields: {members: 1}}).fetch(),
+        friendCircle: Circles.find({"title": "myfriends"}, {fields: {members: 1}}).fetch(),
     };
 }, CreateCirclePage)
