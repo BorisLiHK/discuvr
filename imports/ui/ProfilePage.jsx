@@ -43,14 +43,6 @@ export default class ProfilePage extends Component {
                         left:20,
                     }}
                 />
-                <RaisedButton
-                    secondary label='Later'
-                    href="/"
-                    style={{
-                        position:"fixed",
-                        right:20,
-                    }}
-                />
             </div>
         );
     }

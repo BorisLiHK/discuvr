@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
+//import {browserHistory} from 'react-router';
+
 const Profiles = new Mongo.Collection('profiles');
 
 if (Meteor.isServer) {
@@ -18,26 +20,16 @@ Meteor.methods({
 	'profiles.updateLocation'(userId,pos){
 		check(userId,String);
 		const profile=Profiles.findOne({userId: userId});
-		if(!profile){
-			throw new Meteor.Error('not-found');
+		if(profile){
+			//browserHistory.push('/my-profile');
+			Profiles.update({userId:userId},{$set:{location:{latitude: pos[1], longitude: pos[0]}}});
+
 		}
-		Profiles.update({userId:userId},{$set:{location:{latitude: pos[1], longitude: pos[0]}}});
 	},
 	'profiles.getLocation'(userId){
 		check(userId,String);
 		const profile=Profiles.findOne({userId:userId});
 		return profile.location;
-	},
-	'profiles.exist'(userId){
-		console.log("exist called");
-		check(userId,String);
-		const profile=Profiles.findOne({userId:userId});
-		if(!profile){
-			return true;
-		}
-		else{
-			return false;
-		}
 	}
 });
 
