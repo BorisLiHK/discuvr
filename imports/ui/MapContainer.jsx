@@ -49,7 +49,9 @@ class MapContainer extends Component {
         window.setInterval(() => { 
             that.getCenter((pos) => {
                 that.setState({mapCenter: pos})
-                console.log("newMapCenter: ", that.state.mapCenter);
+                //console.log(that);
+                //TODO update location in profile
+                //console.log("newMapCenter: ", that.state.mapCenter);
             })
         },3000);
     }

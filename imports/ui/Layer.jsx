@@ -42,7 +42,7 @@ export default class Layer extends Component {
                 })
             })
         } else if (this.props.children.length != 0) {
-            if(freture.props.userId==this.userId())
+            if(this.props.children[0].props.userId==this.userId())
                 icon="jewel_own"
             else
                 icon="jewel_default"
@@ -50,11 +50,11 @@ export default class Layer extends Component {
                 "type" : "Feature",
                 "properties": {
                     "icon": icon,
-                    "title": feature.props.title
+                    "title": this.props.children[0].props.title
                 },
                 "geometry": {
                     "type": "Point",
-                    "coordinates": this.props.children.props.coordinates
+                    "coordinates": this.props.children[0].props.coordinates
                 }
             })
         }
