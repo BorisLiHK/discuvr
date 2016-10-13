@@ -75,6 +75,11 @@ Jewels.attachSchema({
     },
     coordinates: {
         type: CoordinateSchema,
+        optional:true,
+        autoValue:function(){
+            if(this.isSet==false)
+                return Meteor.call('profiles.getLocation',Meteor.userId());
+        },
         srf: {
             type: ObjectComponent
         }

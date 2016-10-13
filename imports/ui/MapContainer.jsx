@@ -24,7 +24,7 @@ class MapContainer extends Component {
 
     //use callback so that the function to update center get called once position is updated
     getCenter(callback) {
-        var position = [151.199,-33.884];
+        var position = [151.1998,-33.8848];
         var onSuccess = (pos) => {
             position = [pos.coords.longitude, pos.coords.latitude];
 
@@ -46,11 +46,11 @@ class MapContainer extends Component {
 
     componentDidMount(){
         const that=this;
+        const userId=Meteor.userId();
         window.setInterval(() => { 
             that.getCenter((pos) => {
                 that.setState({mapCenter: pos})
-                //console.log(that);
-                //TODO update location in profile
+                Meteor.call('profiles.updateLocation',userId,pos);
                 //console.log("newMapCenter: ", that.state.mapCenter);
             })
         },3000);
