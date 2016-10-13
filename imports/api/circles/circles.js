@@ -53,12 +53,10 @@ Meteor.methods({
     },
 
     'circles.addCircle'(circleTitle, circleMembers) {
-        console.log(circleTitle)
-        console.log(circleMembers)
         check(circleTitle, String);
         check(circleMembers, Array);
 
-        Circles.insert({title: circleTitle}, {members: circleMembers})
+        Circles.insert({title: circleTitle, members: circleMembers})
     },
 
     'circles.removeFriend'(friendId, circleId) {
