@@ -42,7 +42,7 @@ export default class Layer extends Component {
                 })
             })
         } else if (this.props.children.length != 0) {
-            if(this.props.children[0].props.userId==this.userId())
+            if(this.props.children[0].props.userId==userId)
                 icon="jewel_own"
             else
                 icon="jewel_default"
