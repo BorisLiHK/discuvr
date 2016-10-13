@@ -25,11 +25,13 @@ class AddFriendPage extends Component {
         console.log(this.props.friendsCircle);
         if (this.state.stranger) {
             Meteor.call('circles.addFriend', this.state.stranger, this.props.friendsCircle[0]._id);
-            console.log("added");
+            //console.log("added");
             if(this.state.circle){
                 Meteor.call('circles.addFriend',this.state.stranger,this.state.circle);
-                console.log("added to ",this.state.circle);
+                //console.log("added to ",this.state.circle);
             }
+            browserHistory.push('/')
+
         }
         else {
             console.log("not added");
