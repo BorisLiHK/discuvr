@@ -78,7 +78,6 @@ export default class Jewel extends Component {
                     <em>Author: </em>{this.getUsername()}<br />
                     { this.props.jewel.description ?
                         (<div><em>Description: </em>{this.props.jewel.description}<br /></div>) : '' }
-                    <RateJewel />
                 </CardText>
                 <CardActions>
                     <FlatButton
