@@ -46,7 +46,8 @@ class CreateCirclePage extends Component {
 
     submit() {
         const text = document.getElementById("tbTitle").value;
-        Meteor.call('circles.addCircle', text, this.state.newCircleFriends.map(function(a) {return a._id}))
+        Meteor.call('circles.addCircle', text, this.state.newCircleFriends.map(function(a) {return a._id}));
+        browserHistory.push('/my-circles');
     }
 
     render() {
