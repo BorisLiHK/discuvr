@@ -42,7 +42,6 @@ export default class Jewel extends Component {
                     <Field fieldName='coordinates' />
                     <Field fieldName='private' />
                 </Form>
-            </CardText>
             <CardActions>
                 <FlatButton
                     label="Save"
@@ -55,6 +54,7 @@ export default class Jewel extends Component {
                     onTouchTap={() => this.deleteThisJewel()}
                 />
             </CardActions>
+            </CardText>
         </Card>)
     }
 
