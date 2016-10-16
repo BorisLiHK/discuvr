@@ -30,7 +30,7 @@ class AddFriendPage extends Component {
                 Meteor.call('circles.addFriend',this.state.stranger,this.state.circle);
                 //console.log("added to ",this.state.circle);
             }
-            browserHistory.push('/')
+            browserHistory.push('/my-circles')
 
         }
         else {
