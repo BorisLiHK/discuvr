@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
+import {Form,Field} from 'simple-react-form';
 import FlatButton from 'material-ui/FlatButton'
 import moment from 'moment'
 
@@ -26,7 +27,8 @@ export default class Circle extends Component {
 
     render() {
         let createdAt = moment(this.props.circle.createdAt).format('DD MMMM YYYY [at] hh:mm a')
-        return (
+        if(this.props.circle.title=="myfriends")
+            return(
             <Card>
                 <CardHeader
                     title={this.props.circle.title}
@@ -45,7 +47,7 @@ export default class Circle extends Component {
                                     <button 
                                         className="deletecircle"
                                         data-member={member._id} 
-                                        onClick={this.deleteMember}
+                                        onClick={this.deleteFriend}
                                     >
                                         X
                                     </button>
@@ -56,18 +58,58 @@ export default class Circle extends Component {
                     }
                     </ul>
                 </CardText>
+            </Card>)
+        return (
+            <Card>
+                <CardHeader
+                    title={this.props.circle.title}
+                    subtitle={createdAt}
+                    actAsExpander={true}
+                    showExpandableButton={true}
+                />
 
-                <CardActions>
-                    <FlatButton
-                        label="Edit"
-                        primary={true}
-                    />
-                    <FlatButton
-                        label ="Delete"
-                        secondary={true}
-                        onTouchTap={() => this.deleteThisCircle()}
-                    />
-                </CardActions>
+                <CardText expandable={true}>
+                    <Form
+                        collection={Circles}
+                        type='update'
+                        ref='form'
+                        doc={this.props.circle}
+                        logErrors
+                    >
+                        <Field fieldName='title' />
+                    </Form>
+                <CardTitle title="Members" expandable={true} />
+                    <ul>
+                    {
+                        this.props.circle.membersObj.map((member, i) => {
+                            return (
+                                <li key={i}> 
+                                    <button 
+                                        className="deletecircle"
+                                        data-member={member._id} 
+                                        onClick={this.deleteMember}
+                                    >
+                                        X
+                                    </button>
+                                    {member.username}
+                                </li>
+                            )
+                        }, this)
+                    }
+                    </ul>
+                    <CardActions>
+                        <FlatButton
+                            label="Save"
+                            primary={true}
+                            onTouchTap={() => this.refs.form.submit()}
+                        />
+                        <FlatButton
+                            label ="Delete"
+                            secondary={true}
+                            onTouchTap={() => this.deleteThisCircle()}
+                        />
+                    </CardActions>
+                </CardText>
             </Card>
         )
     }
