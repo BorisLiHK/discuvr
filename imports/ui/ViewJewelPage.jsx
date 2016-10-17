@@ -19,6 +19,8 @@ export default class ViewJewelPage extends Component {
           margin: 20,
           padding: 15,
           position: 'absolute',
+          left: 0,
+          right: 0,
         }}
       >
         <h1>{this.PropTypes.jewel.title}</h1>

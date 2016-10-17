@@ -32,6 +32,8 @@ class MyJewelsList extends Component {
           margin: 20,
           padding: 15,
           position: 'absolute',
+          left: 0,
+          right: 0,
         }}
       >
         <h1>My Jewels</h1>
@@ -39,7 +41,7 @@ class MyJewelsList extends Component {
         <div className="jewel_cards">
           {this.renderJewels()}
         </div>
-        
+
         <div
           style={{
             marginTop: 20,

@@ -18,6 +18,8 @@ export default class ProfilePage extends Component {
           margin: 20,
           padding: 15,
           position: 'absolute',
+          left: 0,
+          right: 0,
         }}
       >
         <h1>Tell Us About You</h1>

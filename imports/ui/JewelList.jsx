@@ -32,6 +32,8 @@ class JewelList extends Component {
           margin: 20,
           padding: 15,
           position: 'absolute',
+          left: 0,
+          right: 0,
         }}
       >
         <h1>Jewels</h1>

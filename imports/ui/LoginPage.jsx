@@ -172,41 +172,43 @@ class Login extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          padding: '50px 20px',
-          backgroundColor: 'rgba(233,30,99, 0.1)',
-          margin: 'auto',
-          maxWidth: 500,
-          position: 'fixed',
-          top: 0,
-          bottom: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}
-      >
-        <Paper
+        <div
           style={{
-            padding: 10,
-            textAlign: 'center',
+            padding: '50px 20px',
+            backgroundColor: 'rgba(233,30,99, 0.1)',
+            position: 'fixed',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
           }}
         >
-          <img
-            style={{ marginTop: 20 }}
-            role="presentation"
-            src="img/jewel_default.png"
-          />
-
-          <h1
-            className="heading"
+          <Paper
+            style={{
+              maxWidth: 370,
+              margin: 'auto',
+              padding: 10,
+              textAlign: 'center',
+            }}
           >
-            discuvr
-          </h1>
+            <img
+              style={{ marginTop: 20 }}
+              role="presentation"
+              src="img/jewel_default.png"
+            />
 
-          {this.handleView()}
-        </Paper>
-      </div>
+            <h1
+              className="heading"
+            >
+              discuvr
+            </h1>
+
+            {this.handleView()}
+          </Paper>
+        </div>
     );
   }
 }

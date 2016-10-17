@@ -15,7 +15,7 @@ import MyCirclesList from '../../ui/MyCirclesList';
 import JewelList from '../../ui/JewelList';
 
 function redirectToMap(nextState, replace) {
-  if (Meteor.userId()) {
+  if (Meteor.userId() !== null) {
     replace({
       pathname: '/',
       state: { nextPathname: nextState.location.pathname }
@@ -24,7 +24,7 @@ function redirectToMap(nextState, replace) {
 }
 
 function redirectToLogin(nextState, replace) {
-  if (!Meteor.userId()) {
+  if (!Meteor.userId() && !location.pathname.includes('login')) {
     replace({
       pathname: 'login',
       state: { nextPathname: nextState.location.pathname }

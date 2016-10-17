@@ -12,7 +12,7 @@ import Jewels from '../api/jewels';
 import Circles from '../api/circles';
 import Profiles from '../api/profiles';
 import AppIconMenu from './IconMenu';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 
 class MapContainer extends Component {
   constructor(props) {
@@ -57,6 +57,40 @@ class MapContainer extends Component {
     }, 3000);
   }
 
+  showButtons() {
+    if (!location.pathname.includes('login')) {
+      return (
+        <div>
+          <FloatingActionButton
+            key="profile"
+            style={{
+              position: "fixed",
+              right: 20,
+              top: 20,
+            }}
+          >
+            <ProfileIcon/>
+          </FloatingActionButton>
+
+          <AppIconMenu key="menu"/>
+
+          <FloatingActionButton
+            key="jewel"
+            onClick={() => browserHistory.push('create-jewel')}
+            style={{
+              position: "fixed",
+              right: 20,
+              bottom: 20,
+            }}
+          >
+            <JewelIcon/>
+          </FloatingActionButton>
+        </div>
+      )
+    }
+    return ''
+  }
+
   render() {
     return (
       <div className="super_class">
@@ -74,11 +108,8 @@ class MapContainer extends Component {
               'icon-allow-overlap': true
             }}
           >
-
-
             {
               this.props.jewels.map((jewel, index) => (
-
                 <Feature
                   key={jewel._id}
                   id={jewel.id}
@@ -90,34 +121,12 @@ class MapContainer extends Component {
                   ]}
                 />
               ))
-
             }
           </Layer>
 
         </Map>
 
-        <FloatingActionButton
-          style={{
-            position: "fixed",
-            right: 20,
-            top: 20,
-          }}
-        >
-          <ProfileIcon/>
-        </FloatingActionButton>
-
-        <AppIconMenu />
-
-        <FloatingActionButton
-          onClick={() => browserHistory.push('create-jewel')}
-          style={{
-            position: "fixed",
-            right: 20,
-            bottom: 20,
-          }}
-        >
-          <JewelIcon/>
-        </FloatingActionButton>
+        {this.showButtons()}
 
         {this.props.children}
       </div>
