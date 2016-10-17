@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { renderRoutes } from '../imports/startup/client/routes'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import '../imports/startup/accounts-config.js';
+import '../imports/startup/accounts-config';
 
 injectTapEventPlugin();
 
