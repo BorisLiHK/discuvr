@@ -12,7 +12,7 @@ import Jewels from '../api/jewels';
 import Circles from '../api/circles';
 import Profiles from '../api/profiles';
 import AppIconMenu from './IconMenu';
-//import {browserHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 
 class MapContainer extends Component {
   constructor(props) {
@@ -57,12 +57,6 @@ class MapContainer extends Component {
     }, 3000);
   }
 
-  /*componentDidUpdate(prevProps){
-   if(this.props.profiles.length==0){
-   browserHistory.push('/my-profile');
-   }
-   }*/
-
   render() {
     return (
       <div className="super_class">
@@ -103,25 +97,29 @@ class MapContainer extends Component {
         </Map>
 
         <FloatingActionButton
-          href="profile"
           style={{
             position: "fixed",
             right: 20,
             top: 20,
-          }}>
+          }}
+        >
           <ProfileIcon/>
         </FloatingActionButton>
 
         <AppIconMenu />
 
-        <FloatingActionButton href="create-jewel" style={{
-          position: "fixed",
-          right: 20,
-          bottom: 20,
-        }}>
+        <FloatingActionButton
+          onClick={() => browserHistory.push('create-jewel')}
+          style={{
+            position: "fixed",
+            right: 20,
+            bottom: 20,
+          }}
+        >
           <JewelIcon/>
         </FloatingActionButton>
 
+        {this.props.children}
       </div>
     );
   }

@@ -42,17 +42,17 @@ class AppIconMenu extends Component {
 
           <MenuItem
             primaryText="My Profile"
-            href='my-profile'
+            onClick={() => browserHistory.push('my-profile')}
           />
 
           <MenuItem
             primaryText="My Jewels"
-            href="my-jewels"
+            onClick={() => browserHistory.push('my-jewels')}
           />
 
           <MenuItem
             primaryText="My Circles"
-            href="my-circles"
+            onClick={() => browserHistory.push('my-circles')}
           />
 
           <MenuItem

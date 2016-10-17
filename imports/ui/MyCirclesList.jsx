@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Meteor } from 'meteor/meteor'
+import { browserHistory } from 'react-router'
 import { createContainer } from 'meteor/react-meteor-data'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton'
 
 import Circles from '../api/circles'
@@ -33,7 +33,7 @@ class MyCirclesList extends Component {
                     <RaisedButton
                         label='Create Circle'
                         primary={true}
-                        href="/create-circle"
+                        onClick={() => browserHistory.push('create-circle')}
                         style={{
                             position: 'fixed',
                             left: 20,
@@ -42,7 +42,7 @@ class MyCirclesList extends Component {
                     <RaisedButton
                         label='Add Friends'
                         secondary={true}
-                        href="/add-friend"
+                        onClick={() => browserHistory.push('add-friend')}
                         style={{
                             position:'fixed',
                             right: 20
@@ -53,7 +53,7 @@ class MyCirclesList extends Component {
                     <RaisedButton
                         label='Back to Map'
                         secondary={true}
-                        href="/"
+                        onClick={() => browserHistory.push('/')}
                         style={{
                             position: 'fixed',
                             right: 20, 
