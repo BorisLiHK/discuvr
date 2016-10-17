@@ -6,7 +6,6 @@ import {Router, IndexRoute, Route, browserHistory} from 'react-router';
 import App from '../../ui/App'
 import MapContainer from '../../ui/MapContainer'
 import LoginPage from '../../ui/LoginPage'
-import LogoutPage from '../../ui/LogoutPage'
 import CreateJewelPage from '../../ui/CreateJewelPage'
 import CreateCirclePage from '../../ui/CreateCirclePage'
 import ProfilePage from '../../ui/ProfilePage'
@@ -47,7 +46,7 @@ export const renderRoutes = () => (
             <IndexRoute component={MapContainer} onEnter={redirectToLogin} />
             {/*<Route path="history" component={History} onEnter={redirectToLogin} />*/}
             <Route path="login" component={LoginPage} onEnter={redirectToMap} />
-            <Route path="logout" component={LogoutPage} onEnter={loggingOutUser} />
+            <Route path="logout" component={LoginPage} onEnter={loggingOutUser} />
             <Route path="create-jewel" component={CreateJewelPage} />
             <Route path="my-jewels" component={MyJewelsList} />
             <Route path="view-jewel" component={ViewJewelPage} />
