@@ -70,7 +70,7 @@ export default createContainer(() => {
   Meteor.subscribe('myjewels');
 
   return {
-    jewels: Jewels.find({}, { sort: { createdAt: -1 } }).fetch(),
+    jewels: Jewels.find({userId: Meteor.userId()}, { sort: { createdAt: -1 } }).fetch(),
     currentUser: Meteor.user()
   };
 }, MyJewelsList);
