@@ -30,9 +30,6 @@ Meteor.methods({
       //browserHistory.push('/my-profile');
       Profiles.update({ userId: userId }, { $set: { location: { latitude: pos[1], longitude: pos[0] } } });
     }
-    else {
-      browserHistory.push('/my-profile');
-    }
   },
   'profiles.getLocation'(userId) {
     check(userId, String);
